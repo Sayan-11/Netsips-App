@@ -1,0 +1,2 @@
+rootProject.name='netsips'
+include ':app'
