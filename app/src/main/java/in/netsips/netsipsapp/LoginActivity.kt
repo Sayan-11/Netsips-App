@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.snackbar.Snackbar
 
 
 class LoginActivity : AppCompatActivity() {
@@ -15,10 +16,11 @@ class LoginActivity : AppCompatActivity() {
     private val signInRequestCode = 1001
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
@@ -38,8 +40,16 @@ class LoginActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == signInRequestCode) {
-            //User has now signed in. Redirecting to MainActivity
-            handleSignIn()
+            if (resultCode == 0) {
+                Snackbar.make(
+                    binding.loginCoordinator,
+                    getString(R.string.sign_in_failed),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            } else {
+                //User has now signed in. Handle the sign in.
+                handleSignIn()
+            }
         }
     }
 

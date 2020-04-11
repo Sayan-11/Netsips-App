@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">netsips</string>
 
-    <!--Login page text-->
     <string name="login_header_text">The content you like.\nDelivered whenever you want.</string>
     <string name="login_sub_header_text">Join us today and never miss another article you wanted to read or the video you wanted to see.</string>
     <string name="login_logo_image_content_description">netsips logo</string>
     <string name="sign_in_with_google">Sign in with Google</string>
-    <string name="google_sign_in_client_id">617103322863-30iggerpekrhag1ga91q90joc5ro3tc0.apps.googleusercontent.com</string>
+    <string name="sign_in_failed">Sign in failed.</string>
+
 </resources>
