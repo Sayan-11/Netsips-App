@@ -6,5 +6,8 @@
     <string name="login_logo_image_content_description">netsips logo</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_failed">Sign in failed.</string>
+    <string name="navigation_archive">Archive</string>
+    <string name="navigation_home">Home</string>
+    <string name="navigation_notifications">Notifications</string>
 
 </resources>
