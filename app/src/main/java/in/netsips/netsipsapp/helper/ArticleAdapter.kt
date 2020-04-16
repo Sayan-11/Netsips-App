@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ArticleAdapter(private val articlesList: ArrayList<Article>) :
+class ArticleAdapter(private val articlesList: List<Article>) :
     RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,8 +45,8 @@ class ArticleAdapter(private val articlesList: ArrayList<Article>) :
             }
         }
 
-        private fun formatDate(dateToFormat: Date): String {
-            return SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()).format(dateToFormat)
+        private fun formatDate(dateToFormat: Long): String {
+            return SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()).format(Date(dateToFormat))
         }
 
     }
