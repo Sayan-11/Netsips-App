@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,8 +36,8 @@ class ArticleAdapter(private val articlesList: List<Article>) :
             val articleDateText = itemView.findViewById<TextView>(R.id.article_date_text)
             val articleFeatureImage = itemView.findViewById<ImageView>(R.id.article_featured_image)
             val articleTitleText = itemView.findViewById<TextView>(R.id.article_title_text)
-            articleDateText.text = formatDate(article.date)
-            //TODO: Use picasso to set image
+            articleDateText.text = formatDate(article.dateAdded)
+            Picasso.with(itemView.context).load(article.imageUrl).into(articleFeatureImage)
             articleTitleText.text = article.title
 
             itemView.setOnClickListener {

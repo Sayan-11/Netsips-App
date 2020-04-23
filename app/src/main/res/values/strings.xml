@@ -13,4 +13,6 @@
     <string name="save_article_confirmation">Save this article to your current session?</string>
     <string name="article_added">Article added to your current session</string>
 
+    <string name="metadata_api_base_url">https://api.urlmeta.org</string>
+
 </resources>
