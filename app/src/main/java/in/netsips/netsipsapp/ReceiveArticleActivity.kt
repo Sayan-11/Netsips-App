@@ -11,7 +11,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.room.Room
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,26 +19,46 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.regex.Pattern
 
 class ReceiveArticleActivity : AppCompatActivity() {
 
+    private var mDb: AppDatabase? = null
+
+    private lateinit var binding: ActivityReceiveArticleBinding
+
+    private lateinit var retrofitClient: Retrofit
+    private lateinit var retrofitService: APIInterface
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityReceiveArticleBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_receive_article)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_receive_article)
 
-        val db =
-            Room.databaseBuilder(applicationContext, AppDatabase::class.java, "current_session")
-                .allowMainThreadQueries().build()
+        mDb = AppDatabase.getInstance(this)
 
-        val retrofitClient = Retrofit.Builder().baseUrl(getString(R.string.metadata_api_base_url))
+        retrofitClient = Retrofit.Builder().baseUrl(getString(R.string.metadata_api_base_url))
             .addConverterFactory(GsonConverterFactory.create()).build()
-        val retrofitService = retrofitClient.create(APIInterface::class.java)
+        retrofitService = retrofitClient.create(APIInterface::class.java)
 
         val intentText = intent.getStringExtra(Intent.EXTRA_TEXT)
-        binding.articleUrlText.text = intentText
 
-        val call = retrofitService.getMetaData(intentText)
+        val p = Pattern.compile(
+            "((https?):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)",
+            Pattern.CASE_INSENSITIVE or Pattern.MULTILINE or Pattern.DOTALL
+        ).matcher(intentText)
+        if (p.find()) {
+            val url = intentText.substring(p.start(0), p.end(0))
+            binding.articleUrlText.text = url
+            setArticleData(url)
+        } else {
+            Log.d("ReceiveArticleActivity", "Intent text: $intentText")
+            Log.d("ReceiveArticleActivity", "URL unusable")
+            //TODO: Not a usable URL
+        }
+    }
+
+    private fun setArticleData(url: String) {
+        val call = retrofitService.getMetaData(url)
         call.enqueue(object : Callback<MetaResult> {
             override fun onFailure(call: Call<MetaResult>, t: Throwable) {
                 Log.d("ReceiveArticleActivity", "Status: ${t.message}")
@@ -54,14 +73,16 @@ class ReceiveArticleActivity : AppCompatActivity() {
                     binding.articleTitleText.text = response.body()?.meta?.title
 
                     binding.saveArticleFab.setOnClickListener {
-                        db.userDao().insertArticle(
+                        mDb?.articlesDao()?.insertArticle(
                             Article(
-                                intentText, response.body()?.meta?.site?.name,
+                                url,
+                                response.body()?.meta?.site?.name,
                                 response.body()?.meta?.site?.favicon,
                                 response.body()?.meta?.description,
                                 response.body()?.meta?.image,
                                 response.body()?.meta?.title,
-                                Date().time
+                                Date().time,
+                                Article.IS_CURRENT_SESSION
                             )
                         )
                         Toast.makeText(

@@ -15,4 +15,10 @@
 
     <string name="metadata_api_base_url">https://api.urlmeta.org</string>
 
+    <string name="pref_key_days">days_selected</string>
+    <string name="pref_title_days">Days you want to be reminded</string>
+    <string name="pref_def_summary_days">Not set</string>
+    <string name="pref_dialog_title_days">Select days</string>
+    <string name="archive">Archive</string>
+
 </resources>

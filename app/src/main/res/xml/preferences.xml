@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Notifications">
+
+        <MultiSelectListPreference
+            android:dialogTitle="@string/pref_dialog_title_days"
+            android:entries="@array/days"
+            android:entryValues="@array/days"
+            android:key="@string/pref_key_days"
+            android:summary="@string/pref_def_summary_days"
+            android:title="@string/pref_title_days" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -5,33 +5,35 @@ import `in`.netsips.netsipsapp.databinding.FragmentHomeBinding
 import `in`.netsips.netsipsapp.helper.AppDatabase
 import `in`.netsips.netsipsapp.helper.ArticleAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
 
 class HomeFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding: FragmentHomeBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+    private var mDb: AppDatabase? = null
 
-        val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "current_session")
-            .allowMainThreadQueries().build()
+    private lateinit var binding: FragmentHomeBinding
 
-        val articlesList = db.userDao().getAllArticles()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        binding.currentSessionRecycler.layoutManager = LinearLayoutManager(context)
-        binding.currentSessionRecycler.adapter = ArticleAdapter(articlesList)
+        mDb = AppDatabase.getInstance(requireContext())
+
+        val articles = mDb?.articlesDao()?.getCurrentSessionArticles()
+        if (articles != null && articles.isNotEmpty()) {
+            binding.currentSessionRecycler.layoutManager = LinearLayoutManager(context)
+            binding.currentSessionRecycler.adapter = ArticleAdapter(articles)
+        } else {
+            Log.d("HomeFragment", "No articles")
+        }
 
         return binding.root
     }
-
 }
+
+
