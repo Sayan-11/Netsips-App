@@ -1,15 +1,24 @@
 package `in`.netsips.netsipsapp.ui
 
 import `in`.netsips.netsipsapp.R
+import `in`.netsips.netsipsapp.databinding.FragmentNotificationsBinding
 import android.os.Bundle
-import androidx.preference.PreferenceFragmentCompat
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 
-class NotificationsFragment : PreferenceFragmentCompat() {
+class NotificationsFragment : Fragment() {
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.preferences, rootKey)
+    private lateinit var binding: FragmentNotificationsBinding
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_notifications, container, false)
+
+
+
+        return binding.root
     }
-
-
-
 }

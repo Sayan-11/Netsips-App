@@ -2,15 +2,17 @@ package `in`.netsips.netsipsapp
 
 import `in`.netsips.netsipsapp.databinding.ActivityReceiveArticleBinding
 import `in`.netsips.netsipsapp.helper.APIInterface
-import `in`.netsips.netsipsapp.helper.AppDatabase
 import `in`.netsips.netsipsapp.helper.Article
+import `in`.netsips.netsipsapp.helper.ArticlesRepository
 import `in`.netsips.netsipsapp.helper.MetaResult
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,7 +25,7 @@ import java.util.regex.Pattern
 
 class ReceiveArticleActivity : AppCompatActivity() {
 
-    private var mDb: AppDatabase? = null
+    private lateinit var articlesRepository: ArticlesRepository
 
     private lateinit var binding: ActivityReceiveArticleBinding
 
@@ -34,7 +36,7 @@ class ReceiveArticleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_receive_article)
 
-        mDb = AppDatabase.getInstance(this)
+        articlesRepository = ArticlesRepository(application)
 
         retrofitClient = Retrofit.Builder().baseUrl(getString(R.string.metadata_api_base_url))
             .addConverterFactory(GsonConverterFactory.create()).build()
@@ -53,7 +55,12 @@ class ReceiveArticleActivity : AppCompatActivity() {
         } else {
             Log.d("ReceiveArticleActivity", "Intent text: $intentText")
             Log.d("ReceiveArticleActivity", "URL unusable")
-            //TODO: Not a usable URL
+            Snackbar.make(
+                binding.receiveArticleCoordinator,
+                "URL is not valid",
+                Snackbar.LENGTH_INDEFINITE
+            ).show()
+            binding.articleLoadingProgress.visibility = View.GONE
         }
     }
 
@@ -61,19 +68,26 @@ class ReceiveArticleActivity : AppCompatActivity() {
         val call = retrofitService.getMetaData(url)
         call.enqueue(object : Callback<MetaResult> {
             override fun onFailure(call: Call<MetaResult>, t: Throwable) {
+                Snackbar.make(
+                    binding.receiveArticleCoordinator,
+                    "Unable to connect to the internet",
+                    Snackbar.LENGTH_INDEFINITE
+                ).show()
+                binding.articleLoadingProgress.visibility = View.GONE
                 Log.d("ReceiveArticleActivity", "Status: ${t.message}")
                 t.printStackTrace()
             }
 
             override fun onResponse(call: Call<MetaResult>, response: Response<MetaResult>) {
                 if (response.body()?.result?.status.equals("OK")) {
+                    setNotLoading()
                     binding.articleDateText.text = formatDate(Date().time)
                     Picasso.with(applicationContext).load(response.body()?.meta?.image)
                         .into(binding.articleFeaturedImage)
                     binding.articleTitleText.text = response.body()?.meta?.title
 
                     binding.saveArticleFab.setOnClickListener {
-                        mDb?.articlesDao()?.insertArticle(
+                        articlesRepository.insert(
                             Article(
                                 url,
                                 response.body()?.meta?.site?.name,
@@ -94,15 +108,23 @@ class ReceiveArticleActivity : AppCompatActivity() {
                         finish()
                     }
                 } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "Failed to fetch article information: ${response.body()?.result?.reason}",
-                        Toast.LENGTH_SHORT
+                    binding.articleLoadingProgress.visibility = View.GONE
+                    Snackbar.make(
+                        binding.receiveArticleCoordinator,
+                        "Unable to fetch article information",
+                        Snackbar.LENGTH_INDEFINITE
                     ).show()
                 }
             }
 
         })
+    }
+
+    private fun setNotLoading() {
+        binding.articleLoadingProgress.visibility = View.GONE
+        binding.articleDetailsCard.visibility = View.VISIBLE
+        binding.saveArticleFab.visibility = View.VISIBLE
+        binding.saveArticleFab.show()
     }
 
     private fun formatDate(dateToFormat: Long): String {

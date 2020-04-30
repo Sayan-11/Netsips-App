@@ -20,5 +20,7 @@
     <string name="pref_def_summary_days">Not set</string>
     <string name="pref_dialog_title_days">Select days</string>
     <string name="archive">Archive</string>
+    <string name="no_articles_prompt">Looks like you haven\'t saved any articles\nShare any article with netsips and they\'ll be waiting for you over here :)</string>
+    <string name="archive_no_articles_prompt">Looks like there aren\'t any articles in your archive right now\nOnce you\'ve been reminded to read the articles in your current session, they\'ll appear here</string>
 
 </resources>
