@@ -35,20 +35,22 @@ class HomeFragment : Fragment() {
                 FirestoreViewModel::class.java
             )
 
+        val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewModel.deleteArticle(viewModel.currentArticles.value!![viewHolder.adapterPosition].docID)
+            }
+        }
+        ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.currentSessionRecycler)
+
         viewModel.getCurrentArticles().observe(viewLifecycleOwner, Observer { articles ->
             if (articles.isNotEmpty()) {
                 val adapter = ArticleAdapter(articles)
-
                 binding.currentSessionRecycler.visibility = View.VISIBLE
                 binding.currentSessionRecycler.adapter = adapter
                 binding.noArticlesEmpty.visibility = View.GONE
-
-                val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
-                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                        viewModel.deleteArticle(viewModel.currentArticles.value!![viewHolder.adapterPosition].docID)
-                    }
-                }
-                ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.currentSessionRecycler)
+            } else {
+                binding.currentSessionRecycler.visibility = View.INVISIBLE
+                binding.noArticlesEmpty.visibility = View.VISIBLE
             }
         })
 

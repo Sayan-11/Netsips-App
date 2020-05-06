@@ -35,20 +35,22 @@ class ArchiveFragment : Fragment() {
                 FirestoreViewModel::class.java
             )
 
-        viewModel.getAllArticles().observe(viewLifecycleOwner, Observer { articles ->
+        val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewModel.deleteArticle(viewModel.currentArticles.value!![viewHolder.adapterPosition].docID)
+            }
+        }
+        ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.archiveRecycler)
+
+        viewModel.getCurrentArticles().observe(viewLifecycleOwner, Observer { articles ->
             if (articles.isNotEmpty()) {
                 val adapter = ArticleAdapter(articles)
-
                 binding.archiveRecycler.visibility = View.VISIBLE
                 binding.archiveRecycler.adapter = adapter
                 binding.noArticlesEmpty.visibility = View.GONE
-
-                val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
-                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                        viewModel.deleteArticle(viewModel.allArticles.value!![viewHolder.adapterPosition].docID)
-                    }
-                }
-                ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.archiveRecycler)
+            } else {
+                binding.archiveRecycler.visibility = View.INVISIBLE
+                binding.noArticlesEmpty.visibility = View.VISIBLE
             }
         })
 
