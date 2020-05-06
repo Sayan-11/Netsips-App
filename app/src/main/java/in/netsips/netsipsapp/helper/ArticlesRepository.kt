@@ -22,8 +22,8 @@ class ArticlesRepository(val application: Application) {
         return firestoreDb.collection(uid)
     }
 
-    fun deleteArticle(article: FirestoreArticle): Task<Void> {
-        return firestoreDb.collection(uid).document(article.docID).delete()
+    fun deleteArticle(docId: String): Task<Void> {
+        return firestoreDb.collection(uid).document(docId).delete()
     }
 
 }

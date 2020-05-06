@@ -71,8 +71,8 @@ class FirestoreViewModel(application: Application) : AndroidViewModel(applicatio
         return currentArticles
     }
 
-    fun deleteArticle(article: FirestoreArticle) {
-        articlesRepository.deleteArticle(article)
+    fun deleteArticle(docID: String) {
+        articlesRepository.deleteArticle(docID)
             .addOnSuccessListener {
                 Log.d(TAG, "Article deleted from database")
             }

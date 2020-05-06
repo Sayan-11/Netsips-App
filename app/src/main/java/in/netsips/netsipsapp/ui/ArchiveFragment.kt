@@ -3,6 +3,7 @@ package `in`.netsips.netsipsapp.ui
 import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.databinding.FragmentArchiveBinding
 import `in`.netsips.netsipsapp.helper.ArticleAdapter
+import `in`.netsips.netsipsapp.helper.SwipeToDeleteCallback
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class ArchiveFragment : Fragment() {
 
@@ -31,11 +34,21 @@ class ArchiveFragment : Fragment() {
             ).get(
                 FirestoreViewModel::class.java
             )
+
         viewModel.getAllArticles().observe(viewLifecycleOwner, Observer { articles ->
             if (articles.isNotEmpty()) {
+                val adapter = ArticleAdapter(articles)
+
                 binding.archiveRecycler.visibility = View.VISIBLE
-                binding.archiveRecycler.adapter = ArticleAdapter(articles)
+                binding.archiveRecycler.adapter = adapter
                 binding.noArticlesEmpty.visibility = View.GONE
+
+                val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                        viewModel.deleteArticle(viewModel.allArticles.value!![viewHolder.adapterPosition].docID)
+                    }
+                }
+                ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.archiveRecycler)
             }
         })
 
