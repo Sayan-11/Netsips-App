@@ -8,7 +8,10 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class LoginActivity : AppCompatActivity() {
@@ -17,15 +20,19 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_client_id))
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        auth = FirebaseAuth.getInstance()
 
         binding.loginButton.setOnClickListener {
             loginWithGoogle()
@@ -40,22 +47,35 @@ class LoginActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == signInRequestCode) {
-            if (resultCode == 0) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
                 Snackbar.make(
                     binding.loginCoordinator,
                     getString(R.string.sign_in_failed),
                     Snackbar.LENGTH_SHORT
                 ).show()
-            } else {
-                //User has now signed in. Handle the sign in.
-                handleSignIn()
             }
         }
     }
 
-    private fun handleSignIn() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Snackbar.make(
+                        binding.loginCoordinator,
+                        getString(R.string.sign_in_failed),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
     }
 
 }

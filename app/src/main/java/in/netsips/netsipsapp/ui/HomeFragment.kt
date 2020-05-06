@@ -1,4 +1,4 @@
-package `in`.netsips.netsipsapp.ui.home
+package `in`.netsips.netsipsapp.ui
 
 import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.databinding.FragmentHomeBinding
@@ -23,10 +23,15 @@ class HomeFragment : Fragment() {
         binding.currentSessionRecycler.layoutManager = LinearLayoutManager(context)
 
         val viewModel =
-            ViewModelProvider(this, HomeViewModelFactory(requireActivity().application)).get(
-                HomeViewModel::class.java
+            ViewModelProvider(
+                this,
+                FirestoreViewModelFactory(
+                    requireActivity().application
+                )
+            ).get(
+                FirestoreViewModel::class.java
             )
-        viewModel.currentSessionArticles!!.observe(viewLifecycleOwner, Observer { articles ->
+        viewModel.getCurrentArticles().observe(viewLifecycleOwner, Observer { articles ->
             if (articles.isNotEmpty()) {
                 binding.currentSessionRecycler.visibility = View.VISIBLE
                 binding.currentSessionRecycler.adapter = ArticleAdapter(articles)

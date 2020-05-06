@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ArticleAdapter(private val articlesList: List<Article>) :
+class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
     RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,12 +32,17 @@ class ArticleAdapter(private val articlesList: List<Article>) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindItems(article: Article) {
+        fun bindItems(article: FirestoreArticle) {
             val articleDateText = itemView.findViewById<TextView>(R.id.article_date_text)
             val articleFeatureImage = itemView.findViewById<ImageView>(R.id.article_featured_image)
             val articleTitleText = itemView.findViewById<TextView>(R.id.article_title_text)
             articleDateText.text = formatDate(article.dateAdded)
-            Picasso.with(itemView.context).load(article.imageUrl).into(articleFeatureImage)
+
+            if (article.imageUrl.isNotEmpty())
+                Picasso.with(itemView.context).load(article.imageUrl).into(articleFeatureImage)
+            else
+                articleFeatureImage.visibility = View.INVISIBLE
+
             articleTitleText.text = article.title
 
             itemView.setOnClickListener {

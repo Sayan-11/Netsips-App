@@ -1,10 +1,7 @@
 package `in`.netsips.netsipsapp
 
 import `in`.netsips.netsipsapp.databinding.ActivityReceiveArticleBinding
-import `in`.netsips.netsipsapp.helper.APIInterface
-import `in`.netsips.netsipsapp.helper.Article
-import `in`.netsips.netsipsapp.helper.ArticlesRepository
-import `in`.netsips.netsipsapp.helper.MetaResult
+import `in`.netsips.netsipsapp.helper.*
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -87,18 +84,25 @@ class ReceiveArticleActivity : AppCompatActivity() {
                     binding.articleTitleText.text = response.body()?.meta?.title
 
                     binding.saveArticleFab.setOnClickListener {
-                        articlesRepository.insert(
+                        articlesRepository.insertArticle(
                             Article(
                                 url,
-                                response.body()?.meta?.site?.name,
-                                response.body()?.meta?.site?.favicon,
-                                response.body()?.meta?.description,
-                                response.body()?.meta?.image,
-                                response.body()?.meta?.title,
+                                response.body()?.meta?.image ?: "",
+                                response.body()?.meta?.title!!,
+                                "",
                                 Date().time,
-                                Article.IS_CURRENT_SESSION
+                                FirestoreArticle.CURRENT_SESSION
                             )
                         )
+                            .addOnSuccessListener {
+                                Log.d("ReceiveArticleActivity", "Article saved to Firestore!")
+                            }
+                            .addOnFailureListener {
+                                Log.e(
+                                    "ReceiveArticleActivity",
+                                    "Error saving article to database: ${it.message}"
+                                )
+                            }
                         Toast.makeText(
                             applicationContext,
                             getString(R.string.article_added),

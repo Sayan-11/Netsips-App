@@ -6,11 +6,11 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="in.netsips.netsipsapp.ui.home.HomeFragment"
+        android:name="in.netsips.netsipsapp.ui.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/archiveFragment"
-        android:name="in.netsips.netsipsapp.ui.archive.ArchiveFragment"
+        android:name="in.netsips.netsipsapp.ui.ArchiveFragment"
         android:label="ArchiveFragment" />
     <fragment
         android:id="@+id/notificationsFragment"

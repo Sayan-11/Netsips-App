@@ -1,8 +1,7 @@
-package `in`.netsips.netsipsapp.ui.archive
+package `in`.netsips.netsipsapp.ui
 
 import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.databinding.FragmentArchiveBinding
-import `in`.netsips.netsipsapp.helper.AppDatabase
 import `in`.netsips.netsipsapp.helper.ArticleAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,8 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 class ArchiveFragment : Fragment() {
 
-    private var mDb: AppDatabase? = null
-
     private lateinit var binding: FragmentArchiveBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -26,10 +23,15 @@ class ArchiveFragment : Fragment() {
         binding.archiveRecycler.layoutManager = LinearLayoutManager(context)
 
         val viewModel =
-            ViewModelProvider(this, ArchiveViewModelFactory(requireActivity().application)).get(
-                ArchiveViewModel::class.java
+            ViewModelProvider(
+                this,
+                FirestoreViewModelFactory(
+                    requireActivity().application
+                )
+            ).get(
+                FirestoreViewModel::class.java
             )
-        viewModel.currentSessionArticles!!.observe(viewLifecycleOwner, Observer { articles ->
+        viewModel.getAllArticles().observe(viewLifecycleOwner, Observer { articles ->
             if (articles.isNotEmpty()) {
                 binding.archiveRecycler.visibility = View.VISIBLE
                 binding.archiveRecycler.adapter = ArticleAdapter(articles)

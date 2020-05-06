@@ -1,18 +1,29 @@
 package `in`.netsips.netsipsapp.helper
 
 import android.app.Application
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 
 
-class ArticlesRepository(application: Application) {
+class ArticlesRepository(val application: Application) {
 
-    private val articlesDAO = AppDatabase.getInstance(application)?.articlesDao()
-    val currentSessionArticles = articlesDAO?.getCurrentSessionArticles()
-    val archivedArticles = articlesDAO?.getArchivedArticles()
+    val TAG = "ArticlesRepository"
+    private val firestoreDb = FirebaseFirestore.getInstance()
+    private val uid: String = FirebaseAuth.getInstance().uid!!
 
-    fun insert(article: Article) {
-        AppDatabase.databaseWriteExecutor.execute {
-            articlesDAO?.insertArticle(article)
-        }
+    fun insertArticle(article: Article): Task<DocumentReference> {
+        return firestoreDb.collection(uid).add(article)
+    }
+
+    fun getAllArticles(): CollectionReference {
+        return firestoreDb.collection(uid)
+    }
+
+    fun deleteArticle(article: FirestoreArticle): Task<Void> {
+        return firestoreDb.collection(uid).document(article.docID).delete()
     }
 
 }

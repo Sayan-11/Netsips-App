@@ -3,28 +3,23 @@ package `in`.netsips.netsipsapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onStart() {
         super.onStart()
-        val signedInAccount = GoogleSignIn.getLastSignedInAccount(this)
+        val signedInAccount = auth.currentUser
         if(signedInAccount!=null) {
             //User has signed in before. Redirecting to MainActivity
             startActivity(Intent(this, MainActivity::class.java))
