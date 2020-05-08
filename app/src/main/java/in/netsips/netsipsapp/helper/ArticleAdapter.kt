@@ -78,6 +78,7 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
             return SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()).format(Date(dateToFormat))
         }
 
+        
     }
 
 }
