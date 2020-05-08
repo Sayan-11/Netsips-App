@@ -24,6 +24,6 @@ data class FirestoreArticle(
         const val CURRENT_NOT_SENT_SAVED = 100L
         const val NEWSLETTER_SENT_ARCHIVED = 101L
         const val DELETED = 102L
-        const val NEWSLETTER_NOT_SENT_ARCHIVED = 102L
+        const val NEWSLETTER_NOT_SENT_ARCHIVED = 103L
     }
 }
