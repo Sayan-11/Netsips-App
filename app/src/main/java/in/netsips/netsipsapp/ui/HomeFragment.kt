@@ -42,8 +42,8 @@ class HomeFragment : Fragment() {
         }
         ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.currentSessionRecycler)
 
-        viewModel.getCurrentArticles().observe(viewLifecycleOwner, Observer { articles ->
-            if (articles.isNotEmpty()) {
+        viewModel.getSavedArticles().observe(viewLifecycleOwner, Observer { articles ->
+            if (!articles.isNullOrEmpty()) {
                 val adapter = ArticleAdapter(articles)
                 binding.currentSessionRecycler.visibility = View.VISIBLE
                 binding.currentSessionRecycler.adapter = adapter

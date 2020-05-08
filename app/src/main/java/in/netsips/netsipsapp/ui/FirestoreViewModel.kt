@@ -8,7 +8,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.firestore.Query
 
 class FirestoreViewModel(private val application: Application) : ViewModel() {
 
@@ -17,10 +16,13 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
     var allArticles: MutableLiveData<List<FirestoreArticle>> = MutableLiveData()
     var currentArticles: MutableLiveData<List<FirestoreArticle>> = MutableLiveData()
 
-    fun getAllArticles(): LiveData<List<FirestoreArticle>> {
-        articlesRepository.getAllArticles().orderBy(
-            application.getString(R.string.firestore_user_collection_field_date_added),
-            Query.Direction.DESCENDING
+    fun getArchivedArticles(): LiveData<List<FirestoreArticle>> {
+        articlesRepository.getAllArticles().whereIn(
+            application.getString(R.string.firestore_user_collection_field_article_status),
+            listOf(
+                FirestoreArticle.NEWSLETTER_SENT_ARCHIVED,
+                FirestoreArticle.NEWSLETTER_NOT_SENT_ARCHIVED
+            )
         )
             .addSnapshotListener { value, e ->
                 if (e != null) {
@@ -42,13 +44,17 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
                     )
                     allArticlesList.add(article)
                 }
+                allArticlesList.sortByDescending { it.dateAdded }
                 allArticles.value = allArticlesList
             }
         return allArticles
     }
 
-    fun getCurrentArticles(): LiveData<List<FirestoreArticle>> {
-        articlesRepository.getAllArticles().whereEqualTo("status", FirestoreArticle.CURRENT_SESSION)
+    fun getSavedArticles(): LiveData<List<FirestoreArticle>> {
+        articlesRepository.getAllArticles().whereEqualTo(
+            application.getString(R.string.firestore_user_collection_field_article_status),
+            FirestoreArticle.CURRENT_NOT_SENT_SAVED
+        )
             .addSnapshotListener { value, e ->
                 if (e != null) {
                     Log.e(TAG, "Listening failed")

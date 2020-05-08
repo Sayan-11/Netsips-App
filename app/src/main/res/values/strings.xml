@@ -6,10 +6,10 @@
     <string name="login_logo_image_content_description">netsips logo</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_failed">Sign in failed.</string>
-    <string name="navigation_archive">Saved</string>
+    <string name="navigation_archive">Archive</string>
     <string name="navigation_home">Recent</string>
     <string name="navigation_notifications">Notifications</string>
-    <string name="current_session">Current session</string>
+    <string name="current_session">Saved</string>
     <string name="save_article_confirmation">Save this article to your current session?</string>
     <string name="article_added">Article added to your current session</string>
 

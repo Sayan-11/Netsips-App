@@ -21,7 +21,9 @@ data class FirestoreArticle(
     val status: Long
 ) {
     companion object {
-        const val CURRENT_SESSION = 100L
-        const val NEWSLETTER_SENT = 101L
+        const val CURRENT_NOT_SENT_SAVED = 100L
+        const val NEWSLETTER_SENT_ARCHIVED = 101L
+        const val DELETED = 102L
+        const val NEWSLETTER_NOT_SENT_ARCHIVED = 102L
     }
 }

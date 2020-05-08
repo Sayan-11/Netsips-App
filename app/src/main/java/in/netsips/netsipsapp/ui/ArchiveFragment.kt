@@ -42,7 +42,7 @@ class ArchiveFragment : Fragment() {
         }
         ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.archiveRecycler)
 
-        viewModel.getAllArticles().observe(viewLifecycleOwner, Observer { articles ->
+        viewModel.getArchivedArticles().observe(viewLifecycleOwner, Observer { articles ->
             if (articles.isNotEmpty()) {
                 val adapter = ArticleAdapter(articles)
                 binding.archiveRecycler.visibility = View.VISIBLE

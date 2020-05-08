@@ -3,7 +3,6 @@ package `in`.netsips.netsipsapp.helper
 import `in`.netsips.netsipsapp.R
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,10 +54,10 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
 
             articleTitleText.text = article.title
 
-            articleTagsText.text = if (article.tags.isBlank()) "Add tags" else article.tags
+            articleTagsText.text =
+                if (article.tags.isBlank()) itemView.context.getString(R.string.add_tag) else article.tags
 
             articleTagsText.setOnClickListener {
-                Log.d("ArticleAdapter", "Tag clicked")
                 MaterialDialog(it.context).show {
                     input(allowEmpty = true, prefill = article.tags) { dialog, text ->
                         firestoreDb.document(article.docID).update("tags", text.toString())

@@ -90,7 +90,7 @@ class ReceiveArticleActivity : AppCompatActivity() {
                                 response.body()?.meta?.title!!,
                                 "",
                                 Date(),
-                                FirestoreArticle.CURRENT_SESSION
+                                FirestoreArticle.CURRENT_NOT_SENT_SAVED
                             )
                         )
                             .addOnSuccessListener {
