@@ -3,12 +3,17 @@ package `in`.netsips.netsipsapp.helper
 import `in`.netsips.netsipsapp.R
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.input.input
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,11 +37,16 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val firestoreDb =
+            FirebaseFirestore.getInstance().collection(FirebaseAuth.getInstance().currentUser!!.uid)
+
         fun bindItems(article: FirestoreArticle) {
             val articleDateText = itemView.findViewById<TextView>(R.id.article_date_text)
             val articleFeatureImage = itemView.findViewById<ImageView>(R.id.article_featured_image)
             val articleTitleText = itemView.findViewById<TextView>(R.id.article_title_text)
-            articleDateText.text = formatDate(article.dateAdded)
+            val articleTagsText = itemView.findViewById<TextView>(R.id.article_tags_text)
+            articleDateText.text = formatDate(article.dateAdded.time)
 
             if (article.imageUrl.isNotEmpty())
                 Picasso.with(itemView.context).load(article.imageUrl).into(articleFeatureImage)
@@ -44,6 +54,20 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
                 articleFeatureImage.visibility = View.INVISIBLE
 
             articleTitleText.text = article.title
+
+            articleTagsText.text = if (article.tags.isBlank()) "Add tags" else article.tags
+
+            articleTagsText.setOnClickListener {
+                Log.d("ArticleAdapter", "Tag clicked")
+                MaterialDialog(it.context).show {
+                    input(allowEmpty = true, prefill = article.tags) { dialog, text ->
+                        firestoreDb.document(article.docID).update("tags", text.toString())
+                    }
+                    title(R.string.add_tag)
+                    positiveButton(R.string.tag_dialog_positive)
+                    negativeButton(R.string.tag_dialog_negative)
+                }
+            }
 
             itemView.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(article.articleURL))

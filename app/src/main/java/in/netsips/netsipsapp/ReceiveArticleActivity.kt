@@ -89,7 +89,7 @@ class ReceiveArticleActivity : AppCompatActivity() {
                                 response.body()?.meta?.image ?: "",
                                 response.body()?.meta?.title!!,
                                 "",
-                                Date().time,
+                                Date(),
                                 FirestoreArticle.CURRENT_SESSION
                             )
                         )

@@ -6,8 +6,8 @@
     <string name="login_logo_image_content_description">netsips logo</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_in_failed">Sign in failed.</string>
-    <string name="navigation_archive">Archive</string>
-    <string name="navigation_home">Home</string>
+    <string name="navigation_archive">Saved</string>
+    <string name="navigation_home">Recent</string>
     <string name="navigation_notifications">Notifications</string>
     <string name="current_session">Current session</string>
     <string name="save_article_confirmation">Save this article to your current session?</string>
@@ -23,5 +23,30 @@
     <string name="archive">Archive</string>
     <string name="no_articles_prompt">Looks like you haven\'t saved any articles\nShare any article with netsips and they\'ll be waiting for you over here :)</string>
     <string name="archive_no_articles_prompt">Looks like there aren\'t any articles in your archive right now\nOnce you\'ve been reminded to read the articles in your current session, they\'ll appear here</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+
+    <string name="sign_out_title">Sign out</string>
+    <string name="sign_out_message">Are you sure you want to sign out?</string>
+    <string name="sign_out_positive">Yes</string>
+    <string name="sign_out_neutral">Cancel</string>
+
+    <string name="tags">Tags</string>
+    <string name="add_tag">Add tags</string>
+    <string name="tag_dialog_positive">Add</string>
+    <string name="tag_dialog_negative">Cancel</string>
+
+    <string name="firestore_user_collection_field_article_url" translatable="false">articleURL</string>
+    <string name="firestore_user_collection_field_article_image_url" translatable="false">imageUrl</string>
+    <string name="firestore_user_collection_field_article_title" translatable="false">title</string>
+    <string name="firestore_user_collection_field_article_tags" translatable="false">tags</string>
+    <string name="firestore_user_collection_field_date_added" translatable="false">dateAdded</string>
+    <string name="firestore_user_collection_field_article_status" translatable="false">status</string>
+
 
 </resources>

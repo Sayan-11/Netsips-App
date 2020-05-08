@@ -48,42 +48,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Sunday" />
+                    android:text="@string/sunday" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_monday"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Monday" />
+                    android:text="@string/monday" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_tuesday"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tuesday" />
+                    android:text="@string/tuesday" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_wednesday"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Wednesday" />
+                    android:text="@string/wednesday" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_thursday"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Thursday" />
+                    android:text="@string/thursday" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_friday"
                     style="@style/Widget.MaterialComponents.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Friday" />
+                    android:text="@string/friday" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_saturday"
@@ -91,88 +91,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="Saturday" />
+                    android:text="@string/saturday" />
 
             </com.google.android.material.chip.ChipGroup>
 
         </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/textView3"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/signout_fab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Time you want to be reminded"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
-
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:ems="2"
-            android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <EditText
-            android:id="@+id/editText4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:ems="2"
-            android:inputType="number"
-            app:layout_constraintEnd_toStartOf="@+id/chipGroup"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":"
-            app:layout_constraintBottom_toBottomOf="@+id/editText2"
-            app:layout_constraintEnd_toStartOf="@+id/editText4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/editText2"
-            app:layout_constraintTop_toTopOf="@+id/editText2" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/editText4"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/outline_logout_24"
+            app:backgroundTint="@color/colorLoginButtonBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/editText4"
-            app:layout_constraintTop_toTopOf="@+id/editText4"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_am"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AM" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_pm"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PM" />
-
-        </com.google.android.material.chip.ChipGroup>
+            app:tint="@color/white" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

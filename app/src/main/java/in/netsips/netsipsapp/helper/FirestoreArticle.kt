@@ -1,11 +1,13 @@
 package `in`.netsips.netsipsapp.helper
 
+import java.util.*
+
 data class Article(
     val articleURL: String,
     val imageUrl: String,
     val title: String,
     val tags: String,
-    val dateAdded: Long,
+    val dateAdded: Date,
     val status: Long
 )
 
@@ -15,7 +17,7 @@ data class FirestoreArticle(
     val imageUrl: String,
     val title: String,
     val tags: String,
-    val dateAdded: Long,
+    val dateAdded: Date,
     val status: Long
 ) {
     companion object {
