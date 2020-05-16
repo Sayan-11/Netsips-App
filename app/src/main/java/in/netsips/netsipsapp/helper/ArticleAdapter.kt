@@ -1,6 +1,7 @@
 package `in`.netsips.netsipsapp.helper
 
 import `in`.netsips.netsipsapp.R
+import `in`.netsips.netsipsapp.ui.AddTagBottomSheet
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -8,9 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.input.input
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
@@ -37,9 +37,6 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val firestoreDb =
-            FirebaseFirestore.getInstance().collection(FirebaseAuth.getInstance().currentUser!!.uid)
-
         fun bindItems(article: FirestoreArticle) {
             val articleDateText = itemView.findViewById<TextView>(R.id.article_date_text)
             val articleFeatureImage = itemView.findViewById<ImageView>(R.id.article_featured_image)
@@ -58,14 +55,8 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
                 if (article.tags.isBlank()) itemView.context.getString(R.string.add_tag) else article.tags
 
             articleTagsText.setOnClickListener {
-                MaterialDialog(it.context).show {
-                    input(allowEmpty = true, prefill = article.tags) { dialog, text ->
-                        firestoreDb.document(article.docID).update("tags", text.toString())
-                    }
-                    title(R.string.add_tag)
-                    positiveButton(R.string.tag_dialog_positive)
-                    negativeButton(R.string.tag_dialog_negative)
-                }
+                val activity = itemView.context as AppCompatActivity
+                AddTagBottomSheet(article).show(activity.supportFragmentManager, article.docID)
             }
 
             itemView.setOnClickListener {

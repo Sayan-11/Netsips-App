@@ -12,9 +12,9 @@
         android:title="@string/navigation_home" />
 
     <item
-        android:id="@+id/notificationsFragment"
-        android:icon="@drawable/outline_notifications_24"
-        android:title="@string/navigation_notifications" />
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/outline_settings_24"
+        android:title="@string/navigation_settings" />
 
 
 </menu>

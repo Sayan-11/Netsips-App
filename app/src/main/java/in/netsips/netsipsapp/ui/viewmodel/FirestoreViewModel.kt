@@ -1,4 +1,4 @@
-package `in`.netsips.netsipsapp.ui
+package `in`.netsips.netsipsapp.ui.viewmodel
 
 import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.helper.ArticlesRepository
@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 
 class FirestoreViewModel(private val application: Application) : ViewModel() {
 
@@ -91,4 +92,12 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
             }
     }
 
+}
+
+class FirestoreViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return FirestoreViewModel(
+            application
+        ) as T
+    }
 }

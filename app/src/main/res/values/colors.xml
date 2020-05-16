@@ -7,6 +7,8 @@
     <color name="colorLoginButtonBackground">#000000</color>
     <color name="colorLoginButtonText">#FFFFFF</color>
     <color name="colorTextPrimary">#000000</color>
+    <color name="colorBottomNavBarNotSelected">#616161</color>
+    <color name="colorBottomNavBarSelected">#000000</color>
 
 
     <color name="black">#000000</color>

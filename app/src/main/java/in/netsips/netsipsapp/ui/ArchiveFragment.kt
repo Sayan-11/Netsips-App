@@ -4,6 +4,8 @@ import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.databinding.FragmentArchiveBinding
 import `in`.netsips.netsipsapp.helper.ArticleAdapter
 import `in`.netsips.netsipsapp.helper.SwipeToDeleteCallback
+import `in`.netsips.netsipsapp.ui.viewmodel.FirestoreViewModel
+import `in`.netsips.netsipsapp.ui.viewmodel.FirestoreViewModelFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

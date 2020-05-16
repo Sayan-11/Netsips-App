@@ -13,7 +13,7 @@ class ArticlesRepository(private val application: Application) {
 
     val TAG = "ArticlesRepository"
     private val firestoreDb = FirebaseFirestore.getInstance()
-    private val uid: String = FirebaseAuth.getInstance().uid!!
+    private val uid: String = FirebaseAuth.getInstance().currentUser!!.uid
 
     fun insertArticle(article: Article): Task<DocumentReference> {
         return firestoreDb.collection(uid).add(article)

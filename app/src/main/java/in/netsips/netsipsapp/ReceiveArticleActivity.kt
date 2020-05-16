@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,33 +31,39 @@ class ReceiveArticleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_receive_article)
 
-        articlesRepository = ArticlesRepository(application)
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            binding = DataBindingUtil.setContentView(this, R.layout.activity_receive_article)
 
-        retrofitClient = Retrofit.Builder().baseUrl(getString(R.string.metadata_api_base_url))
-            .addConverterFactory(GsonConverterFactory.create()).build()
-        retrofitService = retrofitClient.create(APIInterface::class.java)
+            articlesRepository = ArticlesRepository(application)
 
-        val intentText = intent.getStringExtra(Intent.EXTRA_TEXT)
+            retrofitClient = Retrofit.Builder().baseUrl(getString(R.string.metadata_api_base_url))
+                .addConverterFactory(GsonConverterFactory.create()).build()
+            retrofitService = retrofitClient.create(APIInterface::class.java)
 
-        val p = Pattern.compile(
-            "((https?):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)",
-            Pattern.CASE_INSENSITIVE or Pattern.MULTILINE or Pattern.DOTALL
-        ).matcher(intentText)
-        if (p.find()) {
-            val url = intentText.substring(p.start(0), p.end(0))
-            binding.articleUrlText.text = url
-            setArticleData(url)
+            val intentText = intent.getStringExtra(Intent.EXTRA_TEXT)
+
+            val p = Pattern.compile(
+                "((https?):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)",
+                Pattern.CASE_INSENSITIVE or Pattern.MULTILINE or Pattern.DOTALL
+            ).matcher(intentText)
+            if (p.find()) {
+                val url = intentText.substring(p.start(0), p.end(0))
+                binding.articleUrlText.text = url
+                setArticleData(url)
+            } else {
+                Log.d("ReceiveArticleActivity", "Intent text: $intentText")
+                Log.d("ReceiveArticleActivity", "URL unusable")
+                Snackbar.make(
+                    binding.receiveArticleCoordinator,
+                    "URL is not valid",
+                    Snackbar.LENGTH_INDEFINITE
+                ).show()
+                binding.articleLoadingProgress.visibility = View.GONE
+            }
         } else {
-            Log.d("ReceiveArticleActivity", "Intent text: $intentText")
-            Log.d("ReceiveArticleActivity", "URL unusable")
-            Snackbar.make(
-                binding.receiveArticleCoordinator,
-                "URL is not valid",
-                Snackbar.LENGTH_INDEFINITE
-            ).show()
-            binding.articleLoadingProgress.visibility = View.GONE
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
 
@@ -102,7 +109,6 @@ class ReceiveArticleActivity : AppCompatActivity() {
                                     "Error saving article to database: ${it.message}"
                                 )
                             }
-                        startActivity(Intent(applicationContext, MainActivity::class.java))
                         finish()
                     }
                 } else {
