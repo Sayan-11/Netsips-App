@@ -4,18 +4,17 @@ import `in`.netsips.netsipsapp.LoginActivity
 import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.databinding.FragmentSettingsBinding
 import `in`.netsips.netsipsapp.ui.viewmodel.SettingsViewModel
+import `in`.netsips.netsipsapp.ui.viewmodel.SettingsViewModelFactory
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
@@ -38,7 +37,10 @@ class SettingsFragment : Fragment() {
             binding.daySundayCheckbox
         )
 
-        val viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
+        val viewModel =
+            ViewModelProvider(this, SettingsViewModelFactory(requireActivity().application)).get(
+                SettingsViewModel::class.java
+            )
         viewModel.daysSelected.observe(viewLifecycleOwner, Observer { days ->
             checkBoxes.forEach { it.isChecked = false }
             for (dayChar in days) {

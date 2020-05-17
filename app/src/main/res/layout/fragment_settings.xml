@@ -8,14 +8,15 @@
 
 
         <TextView
-            android:id="@+id/notifications_header_text"
+            android:id="@+id/settings_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/raleway_light"
             android:text="@string/navigation_settings"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +28,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/reminded_days"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/notifications_header_text" />
+            app:layout_constraintTop_toBottomOf="@+id/settings_text" />
 
         <CheckBox
             android:id="@+id/day_monday_checkbox"

@@ -12,6 +12,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
 
 
 class LoginActivity : AppCompatActivity() {
@@ -66,6 +67,11 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val user = FirebaseAuth.getInstance().currentUser
+                    val rtd = FirebaseDatabase.getInstance().reference.child(user!!.uid)
+                    rtd.child(getString(R.string.rtd_field_days))
+                        .setValue("${getString(R.string.rtd_field_days_default_value)} ")
+                    rtd.child(getString(R.string.rtd_field_email)).setValue(user.email)
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
