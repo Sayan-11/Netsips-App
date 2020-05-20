@@ -1,6 +1,7 @@
 package `in`.netsips.netsipsapp.ui
 
 import `in`.netsips.netsipsapp.LoginActivity
+import `in`.netsips.netsipsapp.LoginActivity.Companion.CLIENT_ID
 import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.databinding.FragmentSettingsBinding
 import `in`.netsips.netsipsapp.ui.viewmodel.SettingsViewModel
@@ -76,7 +77,7 @@ class SettingsFragment : Fragment() {
                     FirebaseAuth.getInstance().signOut()
 
                     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.default_client_id))
+                        .requestIdToken(CLIENT_ID)
                         .requestEmail()
                         .build()
                     GoogleSignIn.getClient(requireContext(), gso).signOut()

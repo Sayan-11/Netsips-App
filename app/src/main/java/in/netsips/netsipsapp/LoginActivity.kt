@@ -3,6 +3,7 @@ package `in`.netsips.netsipsapp
 import `in`.netsips.netsipsapp.databinding.ActivityLoginBinding
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -23,12 +24,17 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
 
+    companion object {
+        const val CLIENT_ID =
+            "617103322863-30iggerpekrhag1ga91q90joc5ro3tc0.apps.googleusercontent.com"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_client_id))
+            .requestIdToken(CLIENT_ID)
             .requestEmail()
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
@@ -53,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
+                e.printStackTrace()
                 Snackbar.make(
                     binding.loginCoordinator,
                     getString(R.string.sign_in_failed),
@@ -75,6 +82,8 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
+                    task.exception?.printStackTrace()
+                    Log.d("LoginActivity", task.exception.toString())
                     Snackbar.make(
                         binding.loginCoordinator,
                         getString(R.string.sign_in_failed),

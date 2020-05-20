@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">netsips</string>
 
     <string name="login_header_text">The content you like.\nDelivered whenever you want.</string>
@@ -14,7 +14,6 @@
     <string name="article_added">Article added to your current session</string>
 
     <string name="metadata_api_base_url">https://api.urlmeta.org</string>
-    <string name="default_client_id" tools:ignore="TypographyDashes">617103322863-3pd8624f780u0h07l37nrehru3r4ibnv.apps.googleusercontent.com</string>
 
     <string name="pref_key_days">days_selected</string>
     <string name="pref_title_days">Days you want to be reminded</string>

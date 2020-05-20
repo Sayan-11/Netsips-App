@@ -7,7 +7,7 @@
         <item name="checkboxStyle">@style/Widget.MaterialComponents.CompoundButton.CheckBox</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:navigationBarColor">@color/white</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/white</item>
         <item name="materialAlertDialogTheme">@style/AlertDialogMaterialTheme</item>
     </style>
 
