@@ -1,34 +1,87 @@
 {
   "project_info": {
-    "project_number": "617103322863",
-    "firebase_url": "https://netsips-1586535958950.firebaseio.com",
-    "project_id": "netsips-1586535958950",
-    "storage_bucket": "netsips-1586535958950.appspot.com"
+    "project_number": "822693996193",
+    "firebase_url": "https://netsips-test-15d95.firebaseio.com",
+    "project_id": "netsips-test-15d95",
+    "storage_bucket": "netsips-test-15d95.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:617103322863:android:9d0e41fda1a6bdfff3f51a",
+        "mobilesdk_app_id": "1:822693996193:android:f1a1931a55df0bb40c72e0",
         "android_client_info": {
-          "package_name": "in.netsips.netsipsapp"
+          "package_name": "com.Netsips.Android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "617103322863-3pd8624f780u0h07l37nrehru3r4ibnv.apps.googleusercontent.com",
+          "client_id": "822693996193-rvm24jlearemavq9jbjrpgpirae6ljbe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Netsips.Android",
+            "certificate_hash": "92ea4488075ee8cba1b45365e357970db85f3e2e"
+          }
+        },
+        {
+          "client_id": "822693996193-kt73fme514b6err66dpuu4h2obd30t88.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Netsips.Android",
+            "certificate_hash": "60312431e8a257e00bf0be3f8eddb37f50790bef"
+          }
+        },
+        {
+          "client_id": "822693996193-u017bnl4h260d61tn5u5n1gdpg5jj3gg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBk7rR5u1sZjSmFOswQ5sbVPW5dxIQj83I"
+          "current_key": "AIzaSyB3UvJ1CgcXy9MhvhAnrMFLBUuQmHfucH0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "617103322863-3pd8624f780u0h07l37nrehru3r4ibnv.apps.googleusercontent.com",
+              "client_id": "822693996193-u017bnl4h260d61tn5u5n1gdpg5jj3gg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822693996193:android:c94a99198fdb590a0c72e0",
+        "android_client_info": {
+          "package_name": "com.Netsips.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822693996193-scba011jvslmn0lspfc1t0daka5hj789.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Netsips.test",
+            "certificate_hash": "60312431e8a257e00bf0be3f8eddb37f50790bef"
+          }
+        },
+        {
+          "client_id": "822693996193-u017bnl4h260d61tn5u5n1gdpg5jj3gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3UvJ1CgcXy9MhvhAnrMFLBUuQmHfucH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822693996193-u017bnl4h260d61tn5u5n1gdpg5jj3gg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
