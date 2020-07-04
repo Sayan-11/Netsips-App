@@ -6,13 +6,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HomeFragment">
+        tools:context=".ui.HomeFragment"
+        android:background="@color/colorLoginBackground">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/archive_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -21,13 +21,14 @@
 
         <TextView
             android:id="@+id/archive_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFF060"
             android:fontFamily="@font/raleway_light"
-            android:text="@string/archive"
+            android:gravity="center"
+            android:text="@string/navigation_about"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -60,6 +61,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
+                android:textColor="@color/colorLoginButtonBackground"
                 android:text="@string/archive_no_articles_prompt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

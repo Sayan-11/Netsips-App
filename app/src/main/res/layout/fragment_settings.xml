@@ -1,131 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorLoginBackground">
 
+        <TextView
+            android:id="@+id/LogOut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:fontFamily="@font/raleway_light"
+            android:text="Log Out"
+            android:textColor="@color/colorLoginButtonBackground"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingLeft="25dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <TextView
             android:id="@+id/settings_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFF060"
             android:fontFamily="@font/raleway_light"
+            android:gravity="center"
             android:text="@string/navigation_settings"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/days_heade_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/reminded_days"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_text" />
 
-        <CheckBox
-            android:id="@+id/day_monday_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/monday"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/days_heade_text" />
-
-        <CheckBox
-            android:id="@+id/day_tuesday_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/tuesday"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_monday_checkbox" />
-
-        <CheckBox
-            android:id="@+id/day_wednesday_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/wednesday"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_tuesday_checkbox" />
-
-        <CheckBox
-            android:id="@+id/day_thursday_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/thursday"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_wednesday_checkbox" />
-
-        <CheckBox
-            android:id="@+id/day_friday_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/friday"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_thursday_checkbox" />
-
-        <CheckBox
-            android:id="@+id/day_saturday_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/saturday"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_friday_checkbox" />
-
-        <CheckBox
-            android:id="@+id/day_sunday_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/sunday"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_saturday_checkbox" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/save"
-            app:backgroundTint="@color/colorLoginButtonBackground"
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#A8808080"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_sunday_checkbox" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/logoutButton"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/sign_out_title"
-            android:textColor="@color/black"
-            app:icon="@drawable/outline_logout_24"
-            app:iconTint="@color/colorLoginButtonBackground"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="#A8808080"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#A8808080"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/LogOut" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_text">
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/save"
+                android:textColor="@color/colorLoginBackground"
+                app:backgroundTint="@color/colorLoginButtonBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/raleway_light"
+                android:text="Newsletter"
+                android:textColor="@color/colorLoginButtonBackground"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorLoginButtonBackground"
+                android:fontFamily="@font/raleway_light"
+                android:text="When do you want your newsletter to be delivered?"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    style="@style/radioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway_light"
+                    android:textColor="@color/colorLoginButtonBackground"
+                    android:text="Daily"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway_light"
+                    android:textColor="@color/colorLoginButtonBackground"
+                    android:text="Weekly"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway_light"
+                    android:textColor="@color/colorLoginButtonBackground"
+                    android:text="Custom"
+                    android:textSize="18sp" />
+
+
+                <RadioGroup
+                    android:id="@+id/custom_weekdays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="25dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <CheckBox
+                        android:id="@+id/day_monday_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:textColor="@color/colorLoginButtonBackground"
+                        android:text="@string/monday" />
+
+                    <CheckBox
+                        android:id="@+id/day_tuesday_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:textColor="@color/colorLoginButtonBackground"
+                        android:text="@string/tuesday" />
+
+                    <CheckBox
+                        android:id="@+id/day_wednesday_checkbox"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorLoginButtonBackground"
+                        android:layout_height="25dp"
+                        android:text="@string/wednesday" />
+
+                    <CheckBox
+                        android:id="@+id/day_thursday_checkbox"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorLoginButtonBackground"
+                        android:layout_height="25dp"
+                        android:text="@string/thursday" />
+
+                    <CheckBox
+                        android:id="@+id/day_friday_checkbox"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorLoginButtonBackground"
+                        android:layout_height="25dp"
+                        android:text="@string/friday"
+                        app:layout_constraintStart_toStartOf="@+id/day_monday_checkbox"
+                        app:layout_constraintTop_toBottomOf="@+id/day_thursday_checkbox" />
+
+                    <CheckBox
+                        android:id="@+id/day_saturday_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:textColor="@color/colorLoginButtonBackground"
+                        android:text="@string/saturday" />
+
+                    <CheckBox
+                        android:id="@+id/day_sunday_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:textColor="@color/colorLoginButtonBackground"
+                        android:text="@string/sunday" />
+                </RadioGroup>
+
+
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/raleway_light"
+            android:textColor="@color/colorLoginButtonBackground"
+            android:checked="false"
+            android:text="Dark Mode"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

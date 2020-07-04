@@ -19,14 +19,13 @@ import com.google.firebase.database.FirebaseDatabase
 class LoginActivity : AppCompatActivity() {
 
     private val signInRequestCode = 1001
-
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
 
     companion object {
         const val CLIENT_ID =
-            "617103322863-30iggerpekrhag1ga91q90joc5ro3tc0.apps.googleusercontent.com"
+            "617103322863-h8lcrfkb4jauaq1q8mpm3etncebdsbjg.apps.googleusercontent.com"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

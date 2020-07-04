@@ -1,7 +1,7 @@
 package `in`.netsips.netsipsapp.helper
 
 import java.util.*
-
+//send data to firebase
 data class Article(
     val articleURL: String,
     val imageUrl: String,

@@ -3,18 +3,30 @@
 
     <item
         android:id="@+id/archiveFragment"
-        android:icon="@drawable/outline_inbox_24"
-        android:title="@string/navigation_archive" />
+        android:icon="@drawable/ic_outline_info_24"
+        android:title="" />
+
+    <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="" />
 
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/outline_home_24"
-        android:title="@string/navigation_home" />
+        android:title="" />
 
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/outline_settings_24"
-        android:title="@string/navigation_settings" />
+        android:title="" />
+
+    <item
+        android:id="@+id/deleteFragment"
+        android:icon="@drawable/outline_delete_24"
+        android:title="" />
+
+
 
 
 </menu>

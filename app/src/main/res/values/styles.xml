@@ -1,5 +1,10 @@
 <resources>
-
+    <style name="AppTheme.Night" parent="Theme.AppCompat.DayNight">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
@@ -45,6 +50,10 @@
         <item name="rippleColor">@color/colorPrimary</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
+<style name="radioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+    <item name="backgroundColor">@color/colorTopTitle</item>
+    <item name="colorOnPrimary">@color/colorTopTitle</item>
+    <item name="colorOnSurface">@color/colorTopTitle</item>
+</style>
 
 </resources>
