@@ -41,13 +41,14 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/submit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:textColor="@color/colorLoginBackground"
             android:text="@string/add"
             app:backgroundTint="@color/colorLoginButtonBackground"
             app:layout_constraintBottom_toBottomOf="parent"

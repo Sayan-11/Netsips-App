@@ -29,12 +29,12 @@ class SettingsFragment : Fragment() {
         //val sharedPref = activity?.getSharedPreferences("NightMode", Context.MODE_PRIVATE)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return null
 
-        var Night:Boolean=sharedPref.getBoolean("NightMode",false)
+        var night:Boolean=sharedPref.getBoolean("NightMode",false)
 //        with (sharedPref.edit()) {
 //            putBoolean("NightMode", Night)
 //            commit()
 //        }
-        if(Night){
+        if(night){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             binding.switch1.isChecked=true
 
@@ -64,18 +64,18 @@ class SettingsFragment : Fragment() {
 
         binding.switch1.setOnCheckedChangeListener{_,_ ->
             if(binding.switch1.isChecked){
-                Night=true
+                night=true
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 with (sharedPref.edit()) {
-                    putBoolean("NightMode", Night)
+                    putBoolean("NightMode", night)
                     commit()
                 }
             }
             else{
-                Night=false
+                night=false
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 with (sharedPref.edit()) {
-                    putBoolean("NightMode", Night)
+                    putBoolean("NightMode", night)
                     commit()
                 }
             }
