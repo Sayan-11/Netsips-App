@@ -26,8 +26,10 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
         return ViewHolder(v)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(articlesList[position])
+
     }
 
     override fun getItemCount(): Int {
@@ -63,12 +65,12 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
 
             }
 
-                if (article.tags.isBlank())
-                    articleTagsText.text =itemView.context.getString(R.string.add_tag)
-                else {
-                    articleTagsText.text =article.tags
-                    tagsList.add(article.tags)
-                }
+            if (article.tags.isBlank())
+                articleTagsText.text =itemView.context.getString(R.string.add_tag)
+            else {
+                articleTagsText.text =article.tags
+                tagsList.add(article.tags)
+            }
 
             articleTagsText.setOnClickListener {
                 val activity = itemView.context as AppCompatActivity

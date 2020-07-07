@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import java.util.regex.Pattern
 
 class FirestoreViewModel(private val application: Application) : ViewModel() {
 
@@ -76,10 +77,28 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
                     )
                     savedArticlesList.add(article)
                 }
+                addTags(savedArticlesList)
                 savedArticlesList.sortByDescending { it.dateAdded }
                 currentArticles.value = savedArticlesList
             }
         return currentArticles
+    }
+    //_allTags was immutable so no chance of data change
+    //MutableLiveData ke jaagah u sent LiveData non mutable
+//    val _allTags: LiveData<MutableList<String>>
+//        get() = allTags// whenever u call _all it actually gets the allTag value converts to LiveData and sends
+    var allTags: MutableLiveData<MutableList<String>> = MutableLiveData()
+     private fun addTags(articles: MutableList<FirestoreArticle>) {
+        val tagsList: MutableList<String> = mutableListOf()
+        articles.forEach { article ->
+            val p = Pattern.compile("\\s*([\\w\\s]*|\\d*)\\s*(,|\$)").matcher(article.tags)
+            while (p.find()) {
+                val match = p.group(1) ?: "" //null hua to ""
+                if(match.isNotEmpty())
+                    tagsList.add(match)
+            }
+        }
+        allTags.value = tagsList
     }
 
     fun deleteArticle(docID: String) {

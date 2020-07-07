@@ -31,6 +31,7 @@ class Site {
 
 class Meta {
     @SerializedName("site")
+
     val site: Site? = null
 
     @SerializedName("description")

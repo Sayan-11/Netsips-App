@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         binding.currentSessionRecycler.layoutManager = LinearLayoutManager(context)
@@ -47,6 +48,7 @@ class HomeFragment : Fragment() {
         viewModel.getSavedArticles().observe(viewLifecycleOwner, Observer { articles ->
             if (!articles.isNullOrEmpty()) {
                 val adapter = ArticleAdapter(articles)
+
                 binding.currentSessionRecycler.visibility = View.VISIBLE
                 binding.currentSessionRecycler.adapter = adapter
                 binding.noArticlesEmpty.visibility = View.GONE
