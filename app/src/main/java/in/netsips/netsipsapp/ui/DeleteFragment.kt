@@ -1,9 +1,9 @@
 package `in`.netsips.netsipsapp.ui
 
 import `in`.netsips.netsipsapp.R
-import `in`.netsips.netsipsapp.databinding.FragmentArchiveBinding
+import `in`.netsips.netsipsapp.databinding.FragmentDeleteBinding
 import `in`.netsips.netsipsapp.helper.ArticleAdapter
-import `in`.netsips.netsipsapp.helper.SwipeToDeleteCallback
+import `in`.netsips.netsipsapp.helper.SwipeToDeleteRestoreCallback
 import `in`.netsips.netsipsapp.ui.viewmodel.FirestoreViewModel
 import `in`.netsips.netsipsapp.ui.viewmodel.FirestoreViewModelFactory
 import android.os.Bundle
@@ -18,12 +18,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ArchiveFragment : Fragment() {
+class DeleteFragment : Fragment() {
 
-    private lateinit var binding: FragmentArchiveBinding
+    private lateinit var binding: FragmentDeleteBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_archive, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_delete, container, false)
 
         binding.archiveRecycler.layoutManager = LinearLayoutManager(context)
 
@@ -37,9 +37,13 @@ class ArchiveFragment : Fragment() {
                 FirestoreViewModel::class.java
             )
 
-        val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+        val swipeHandler = object : SwipeToDeleteRestoreCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.deleteArticle(viewModel.allArticles.value!![viewHolder.adapterPosition].docID)
+                if(direction == ItemTouchHelper.LEFT)
+                    viewModel.deleteArticle(viewModel.allArticles.value!![viewHolder.adapterPosition].docID)
+                else{
+                    viewModel.restoreArticle(viewModel.allArticles.value!![viewHolder.adapterPosition].docID)
+                }
             }
         }
         ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.archiveRecycler)

@@ -23,10 +23,26 @@ class ArticlesRepository(private val application: Application) {
         return firestoreDb.collection(uid)
     }
 
-    fun deleteArticle(docId: String): Task<Void> {
-        return firestoreDb.collection(uid).document(docId).update(
+    fun deleteArticle(docId: String){
+
+        firestoreDb.document("$uid/$docId").get()
+            .addOnSuccessListener {
+                val status=it.getLong(application.getString(R.string.firestore_user_collection_field_article_status))
+                if(status != FirestoreArticle.DELETED) {
+                    firestoreDb.collection(uid).document(docId).update(
+                        application.getString(R.string.firestore_user_collection_field_article_status),
+                        FirestoreArticle.DELETED
+                    )
+                }else{
+                    //removes Article from Database if deleted from trash
+                    firestoreDb.collection(uid).document(docId).delete()
+                }
+            }
+    }
+    fun restoreArticle(docId:String){
+        firestoreDb.collection(uid).document(docId).update(
             application.getString(R.string.firestore_user_collection_field_article_status),
-            FirestoreArticle.DELETED
+            FirestoreArticle.CURRENT_NOT_SENT_SAVED
         )
     }
 

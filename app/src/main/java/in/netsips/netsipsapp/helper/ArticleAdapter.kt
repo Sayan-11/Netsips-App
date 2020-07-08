@@ -37,9 +37,9 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        companion object{
-            var tagsList= mutableListOf<String>()
-        }
+//        companion object{
+//            var tagsList= mutableListOf<String>()
+//        }
         fun bindItems(article: FirestoreArticle) {
             val articleDateText = itemView.findViewById<TextView>(R.id.article_date_text)
             val articleFeatureImage = itemView.findViewById<ImageView>(R.id.article_featured_image)
@@ -61,15 +61,12 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
             if(p.find()){
                 link.text = (p.group(2))?.substring(0,1)?.toUpperCase(Locale.ROOT)
                     .plus(p.group(2)?.substring(1))
-
-
             }
 
             if (article.tags.isBlank())
                 articleTagsText.text =itemView.context.getString(R.string.add_tag)
             else {
                 articleTagsText.text =article.tags
-                tagsList.add(article.tags)
             }
 
             articleTagsText.setOnClickListener {

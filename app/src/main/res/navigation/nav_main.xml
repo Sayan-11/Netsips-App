@@ -10,18 +10,18 @@
         android:name="in.netsips.netsipsapp.ui.HomeFragment"
         android:label="HomeFragment" />
     <fragment
-        android:id="@+id/archiveFragment"
-        android:name="in.netsips.netsipsapp.ui.ArchiveFragment"
-        android:label="ArchiveFragment" />
+        android:id="@+id/deleteFragment"
+        android:name="in.netsips.netsipsapp.ui.DeleteFragment"
+        android:label="fragment_delete" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="in.netsips.netsipsapp.ui.SettingsFragment"
         android:label="NotificationsFragment" />
     <fragment
-        android:id="@+id/deleteFragment"
-        android:name="in.netsips.netsipsapp.ui.DeleteFragment"
-        android:label="fragment_delete"
-        tools:layout="@layout/fragment_delete" />
+        android:id="@+id/aboutFragment"
+        android:name="in.netsips.netsipsapp.ui.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="in.netsips.netsipsapp.ui.SearchFragment"

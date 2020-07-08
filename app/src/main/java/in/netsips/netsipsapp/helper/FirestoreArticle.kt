@@ -23,7 +23,7 @@ data class FirestoreArticle(
     companion object {
         const val CURRENT_NOT_SENT_SAVED = 100L
         const val NEWSLETTER_SENT_ARCHIVED = 101L
-        const val DELETED = 102L
+        const val DELETED = 102L//Delete Archive me jara h
         const val NEWSLETTER_NOT_SENT_ARCHIVED = 103L
     }
 }

@@ -26,7 +26,7 @@
             android:background="#FFF060"
             android:fontFamily="@font/raleway_light"
             android:gravity="center"
-            android:text="@string/navigation_about"
+            android:text="@string/navigation_delete"
             android:textColor="@color/black"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"

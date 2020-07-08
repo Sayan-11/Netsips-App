@@ -22,8 +22,7 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
         articlesRepository.getAllArticles().whereIn(
             application.getString(R.string.firestore_user_collection_field_article_status),
             listOf(
-                FirestoreArticle.NEWSLETTER_SENT_ARCHIVED,
-                FirestoreArticle.NEWSLETTER_NOT_SENT_ARCHIVED
+                FirestoreArticle.DELETED
             )
         )
             .addSnapshotListener { value, e ->
@@ -53,9 +52,12 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
     }
 
     fun getSavedArticles(): LiveData<List<FirestoreArticle>> {
-        articlesRepository.getAllArticles().whereEqualTo(
+        articlesRepository.getAllArticles().whereIn(
             application.getString(R.string.firestore_user_collection_field_article_status),
-            FirestoreArticle.CURRENT_NOT_SENT_SAVED
+            listOf(
+            FirestoreArticle.NEWSLETTER_SENT_ARCHIVED,
+            FirestoreArticle.NEWSLETTER_NOT_SENT_ARCHIVED,
+            FirestoreArticle.CURRENT_NOT_SENT_SAVED)
         )
             .addSnapshotListener { value, e ->
                 if (e != null) {
@@ -103,12 +105,16 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
 
     fun deleteArticle(docID: String) {
         articlesRepository.deleteArticle(docID)
-            .addOnSuccessListener {
-                Log.d(TAG, "Article deleted from database")
-            }
-            .addOnFailureListener {
-                Log.e(TAG, "Error deleting article from database: ${it.message}")
-            }
+        //removed Task<Void> return type from DeleteArticle fun to incorporate delete from trash in firestore(Status code 102 deletes from firestore)
+//            .addOnSuccessListener {
+//                Log.d(TAG, "Article deleted from database")
+//            }
+//            .addOnFailureListener {
+//                Log.e(TAG, "Error deleting article from database: ${it.message}")
+//            }
+    }
+    fun restoreArticle(docID: String){
+        articlesRepository.restoreArticle(docID)
     }
 
 }
