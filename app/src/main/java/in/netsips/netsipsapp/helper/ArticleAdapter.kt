@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,8 +50,14 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
             val articleTagsText = itemView.findViewById<TextView>(R.id.article_tags_text)
             articleDateText.text = formatDate(article.dateAdded.time)
 
-            if (article.imageUrl.isNotEmpty())
-                Picasso.with(itemView.context).load(article.imageUrl).into(articleFeatureImage)
+            if (article.imageUrl.isNotEmpty()) {
+                if (article.imageUrl.contains(".png"))
+                    Picasso.with(itemView.context).load(article.imageUrl).resize(1000,1000)
+                        .placeholder(R.drawable.ic_baseline_image_24).into(articleFeatureImage)
+                else
+                    Glide.with(itemView.context).load(article.imageUrl).apply(RequestOptions().override(1000, 1000))
+                        .placeholder(R.drawable.ic_baseline_image_24).into(articleFeatureImage)
+            }
             else
                 articleFeatureImage.visibility = View.INVISIBLE
 

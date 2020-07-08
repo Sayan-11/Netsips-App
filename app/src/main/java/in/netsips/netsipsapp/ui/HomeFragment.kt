@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    lateinit var adapter:ArticleAdapter
+    lateinit var adapter:ArticleAdapter// for notifying app
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

@@ -96,7 +96,7 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
             val p = Pattern.compile("\\s*([\\w\\s]*|\\d*)\\s*(,|\$)").matcher(article.tags)
             while (p.find()) {
                 val match = p.group(1) ?: "" //null hua to ""
-                if(match.isNotEmpty())
+                if(match.isNotEmpty()&&!tagsList.contains(match))
                     tagsList.add(match)
             }
         }

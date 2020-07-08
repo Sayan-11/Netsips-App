@@ -8,9 +8,9 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,7 +85,7 @@ class ReceiveArticleActivity : AppCompatActivity() {
                 if (response.body()?.result?.status.equals("OK")) {
                     setNotLoading()
                     binding.articleDateText.text = formatDate(Date().time)
-                    Picasso.with(applicationContext).load(response.body()?.meta?.image)
+                    Glide.with(applicationContext).load(response.body()?.meta?.image)
                         .into(binding.articleFeaturedImage)
                     binding.articleTitleText.text = response.body()?.meta?.title
 
