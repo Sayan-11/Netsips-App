@@ -17,7 +17,7 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
     private val articlesRepository = ArticlesRepository(application)
     var allArticles: MutableLiveData<List<FirestoreArticle>> = MutableLiveData()
     var currentArticles: MutableLiveData<List<FirestoreArticle>> = MutableLiveData()
-
+//trash vale articles
     fun getArchivedArticles(): LiveData<List<FirestoreArticle>> {
         articlesRepository.getAllArticles().whereIn(
             application.getString(R.string.firestore_user_collection_field_article_status),
@@ -46,6 +46,7 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
                     allArticlesList.add(article)
                 }
                 allArticlesList.sortByDescending { it.dateAdded }
+
                 allArticles.value = allArticlesList
             }
         return allArticles
@@ -106,6 +107,7 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
     fun deleteArticle(docID: String) {
         articlesRepository.deleteArticle(docID)
         //removed Task<Void> return type from DeleteArticle fun to incorporate delete from trash in firestore(Status code 102 deletes from firestore)
+
 //            .addOnSuccessListener {
 //                Log.d(TAG, "Article deleted from database")
 //            }
@@ -117,6 +119,12 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
         articlesRepository.restoreArticle(docID)
     }
 
+    fun searchResult(tag: String){
+        articlesRepository.getAllArticles().whereEqualTo(
+            application.getString(R.string.firestore_user_collection_field_article_tags),
+            tag
+        )
+    }
 }
 
 class FirestoreViewModelFactory(private val application: Application) : ViewModelProvider.Factory {

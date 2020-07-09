@@ -52,14 +52,14 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
 
             if (article.imageUrl.isNotEmpty()) {
                 if (article.imageUrl.contains(".png"))
-                    Picasso.with(itemView.context).load(article.imageUrl).resize(1000,1000)
+                    Picasso.with(itemView.context).load(article.imageUrl).resize(1000,1000).centerCrop()
                         .placeholder(R.drawable.ic_baseline_image_24).into(articleFeatureImage)
                 else
-                    Glide.with(itemView.context).load(article.imageUrl).apply(RequestOptions().override(1000, 1000))
+                    Glide.with(itemView.context).load(article.imageUrl).apply(RequestOptions().override(1000, 1000).centerCrop())
                         .placeholder(R.drawable.ic_baseline_image_24).into(articleFeatureImage)
             }
             else
-                articleFeatureImage.visibility = View.INVISIBLE
+                articleFeatureImage.setImageResource(R.drawable.ic_baseline_image_24)
 
             articleTitleText.text = article.title
             Log.e("url",article.articleURL)

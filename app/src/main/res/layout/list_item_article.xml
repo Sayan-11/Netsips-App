@@ -61,12 +61,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="5dp"
+            android:maxLines="3"
+            android:ellipsize="end"
             android:textColor="@color/colorLoginButtonBackground"
             app:layout_constraintEnd_toStartOf="@+id/article_featured_image"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/article_date_text"
-            tools:text="Corona virus symptoms: what are they and what do they mean?jhfsdgkjdsfhkjvhdofhvoidfhopvhodfnkjsjisjiovjosjodfjvosjvojsoijovijs"
+            tools:text="Corona virus symptoms: what are they and what do they mean?jksklfjdskjflkdsjflkdsjlkndslknvlksnlfsdfsdsdfsdfsdfsdfdsfdsfdsfdsjhfsdgkjdsfhkjvhdofhvoidfhopvhodfnkjsjisjiovjosjodfjvosjvojsoijovijs"
             tools:textColor="@color/colorLoginButtonBackground" />
 
         <TextView

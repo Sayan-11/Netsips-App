@@ -47,8 +47,8 @@ class HomeFragment : Fragment() {
                 else{
                     val intent= Intent()
                     intent.action=Intent.ACTION_SEND
-                    intent.putExtra(Intent.EXTRA_TEXT,viewModel.currentArticles.value!![viewHolder.adapterPosition].articleURL)
-                    intent.type="text/plain"
+//                    intent.putExtra(Intent.EXTRA_TEXT,viewModel.currentArticles.value!![viewHolder.adapterPosition].articleURL)
+//                    intent.type="text/plain"
                     startActivity(Intent.createChooser(intent,"Share To:"))
                     adapter.notifyDataSetChanged()
                 }

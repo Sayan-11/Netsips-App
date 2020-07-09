@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 
 
 class ArticlesRepository(private val application: Application) {
@@ -42,7 +43,11 @@ class ArticlesRepository(private val application: Application) {
     fun restoreArticle(docId:String){
         firestoreDb.collection(uid).document(docId).update(
             application.getString(R.string.firestore_user_collection_field_article_status),
-            FirestoreArticle.CURRENT_NOT_SENT_SAVED
+            FirestoreArticle.CURRENT_NOT_SENT_SAVED)
+
+        firestoreDb.collection(uid).document(docId).update(
+            application.getString(R.string.firestore_user_collection_field_date_added),
+            Date()
         )
     }
 
