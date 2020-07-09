@@ -1,40 +1,60 @@
 {
-        "project_info": {
-                "project_number": "617103322863",
-                "firebase_url": "https://netsips-1586535958950.firebaseio.com",
-                "project_id": "netsips-1586535958950",
-                "storage_bucket": "netsips-1586535958950.appspot.com"
+  "project_info": {
+    "project_number": "617103322863",
+    "firebase_url": "https://netsips-1586535958950.firebaseio.com",
+    "project_id": "netsips-1586535958950",
+    "storage_bucket": "netsips-1586535958950.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617103322863:android:9d0e41fda1a6bdfff3f51a",
+        "android_client_info": {
+          "package_name": "in.netsips.netsipsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617103322863-cpvs589kaihkoe0mv4iqo6mu3sdghlth.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.netsips.netsipsapp",
+            "certificate_hash": "65dae6f7ed22df9438083a319e59a30e2dd639f6"
+          }
         },
-        "client": [
-                {
-                        "client_info": {
-                                "mobilesdk_app_id": "1:617103322863:android:9d0e41fda1a6bdfff3f51a",
-                                "android_client_info": {
-                                        "package_name": "in.netsips.netsipsapp"
-                                }
-                        },
-                        "oauth_client": [
-                                {
-                                        "client_id": "617103322863-3pd8624f780u0h07l37nrehru3r4ibnv.apps.googleusercontent.com",
-                                        "client_type": 3
-                                }
-                        ],
-                        "api_key": [
-                                {
-                                        "current_key": "AIzaSyBk7rR5u1sZjSmFOswQ5sbVPW5dxIQj83I"
-                                }
-                        ],
-                        "services": {
-                                "appinvite_service": {
-                                        "other_platform_oauth_client": [
-                                                {
-                                                        "client_id": "617103322863-3pd8624f780u0h07l37nrehru3r4ibnv.apps.googleusercontent.com",
-                                                        "client_type": 3
-                                                }
-                                        ]
-                                }
-                        }
-                }
-        ],
-        "configuration_version": "1"
+        {
+          "client_id": "617103322863-u7l8atlagef3legp99k70ssphhigfhcs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.netsips.netsipsapp",
+            "certificate_hash": "92ea4488075ee8cba1b45365e357970db85f3e2e"
+          }
+        },
+        {
+          "client_id": "617103322863-4fj9r9k2skj3tfevc8ju88aq6doj75gt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.netsips.netsipsapp",
+            "certificate_hash": "a99e1d4f347c600e5d4e65cddc4958d961fde2ff"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk7rR5u1sZjSmFOswQ5sbVPW5dxIQj83I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617103322863-h8lcrfkb4jauaq1q8mpm3etncebdsbjg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
 }
