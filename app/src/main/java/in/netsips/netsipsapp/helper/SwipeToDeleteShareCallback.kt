@@ -12,8 +12,8 @@ abstract class SwipeToDeleteShareCallback(context: Context) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
 
-    private val deleteIcon = ContextCompat.getDrawable(context, R.drawable.outline_delete_24)
-    private val shareIcon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_share_24)
+    private val deleteIcon = ContextCompat.getDrawable(context, R.drawable.delete_size)
+    private val shareIcon = ContextCompat.getDrawable(context, R.drawable.share_size)
     private val intrinsicWidth = deleteIcon!!.intrinsicWidth
     private val intrinsicHeight = deleteIcon!!.intrinsicHeight
     private val background = ColorDrawable()
@@ -83,7 +83,7 @@ abstract class SwipeToDeleteShareCallback(context: Context) :
         // Calculate position of delete icon
 
         val shareIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
-        val shareIconMargin = 20
+        val shareIconMargin = 40
         val shareIconLeft = itemView.left + shareIconMargin
         val shareIconRight = itemView.left + shareIconMargin+ intrinsicWidth
         val shareIconBottom = shareIconTop + intrinsicHeight
@@ -103,7 +103,7 @@ abstract class SwipeToDeleteShareCallback(context: Context) :
 
         // Calculate position of delete icon
         val deleteIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
-        val deleteIconMargin =20
+        val deleteIconMargin =40
         val deleteIconLeft = itemView.right - deleteIconMargin - intrinsicWidth
         val deleteIconRight = itemView.right - deleteIconMargin
         val deleteIconBottom = deleteIconTop + intrinsicHeight

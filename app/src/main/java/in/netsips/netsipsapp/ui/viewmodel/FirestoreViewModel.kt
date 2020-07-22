@@ -51,7 +51,7 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
             }
         return allArticles
     }
-
+private lateinit var savedArticlesList: MutableList<FirestoreArticle>
     fun getSavedArticles(): LiveData<List<FirestoreArticle>> {
         articlesRepository.getAllArticles().whereIn(
             application.getString(R.string.firestore_user_collection_field_article_status),
@@ -67,7 +67,7 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
                     return@addSnapshotListener
                 }
 
-                val savedArticlesList: MutableList<FirestoreArticle> = mutableListOf()
+                savedArticlesList = mutableListOf()
                 for (doc in value!!) {
                     val article = FirestoreArticle(
                         doc.id,
@@ -104,6 +104,14 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
         allTags.value = tagsList
     }
 
+    fun searchResult(tag: String): MutableList<FirestoreArticle>{
+        val tagsList: MutableList<FirestoreArticle> = mutableListOf()
+        savedArticlesList.forEach{
+            if(it.tags.contains(tag))
+                tagsList.add(it)
+        }
+        return tagsList
+    }
     fun deleteArticle(docID: String) {
         articlesRepository.deleteArticle(docID)
         //removed Task<Void> return type from DeleteArticle fun to incorporate delete from trash in firestore(Status code 102 deletes from firestore)
@@ -119,12 +127,7 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
         articlesRepository.restoreArticle(docID)
     }
 
-    fun searchResult(tag: String){
-        articlesRepository.getAllArticles().whereEqualTo(
-            application.getString(R.string.firestore_user_collection_field_article_tags),
-            tag
-        )
-    }
+
 }
 
 class FirestoreViewModelFactory(private val application: Application) : ViewModelProvider.Factory {

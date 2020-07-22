@@ -6,7 +6,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="150dp"
+        android:paddingTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="0dp"
         android:background="@color/colorLoginBackground">
 
         <View
@@ -17,41 +21,69 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
+        <androidx.cardview.widget.CardView
             android:id="@+id/article_featured_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingBottom="2dp"
-            android:scaleType="centerCrop"
+            app:cardCornerRadius="8dp"
+            android:elevation="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/common_google_signin_btn_icon_dark" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/article_date_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorLoginButtonBackground"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="March 23rd, 2020"
-            tools:textColor="@color/colorLoginButtonBackground" />
+            <ImageView
+                android:id="@+id/roundedImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:background="@color/white"
+                />
+        </androidx.cardview.widget.CardView>
+<!--        <ImageView-->
+<!--            android:id="@+id/article_featured_image"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginBottom="20dp"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:paddingBottom="2dp"-->
+<!--            android:scaleType="centerInside"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:src="@drawable/common_google_signin_btn_icon_dark" />-->
 
         <TextView
             android:id="@+id/link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Link Title"
+            tools:textColor="@color/colorLoginButtonBackground" />
+
+        <TextView
+            android:id="@+id/article_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:text="ffasa"
+            android:text="Date"
+            android:fontFamily="@font/raleway"
             android:textColor="@color/colorLoginButtonBackground"
             android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/article_date_text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/link"
             app:layout_constraintEnd_toStartOf="@+id/article_featured_image"
             tools:textColor="@color/colorLoginButtonBackground" />
 
@@ -59,15 +91,18 @@
             android:id="@+id/article_title_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="5dp"
-            android:maxLines="3"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:ellipsize="end"
+            android:fontFamily="@font/raleway"
+            android:maxLines="3"
             android:textColor="@color/colorLoginButtonBackground"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/article_featured_image"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/article_date_text"
+            app:layout_constraintTop_toBottomOf="@+id/link"
             tools:text="Corona virus symptoms: what are they and what do they mean?jksklfjdskjflkdsjflkdsjlkndslknvlksnlfsdfsdsdfsdfsdfsdfdsfdsfdsfdsjhfsdgkjdsfhkjvhdofhvoidfhopvhodfnkjsjisjiovjosjodfjvosjvojsoijovijs"
             tools:textColor="@color/colorLoginButtonBackground" />
 
@@ -75,18 +110,17 @@
             android:id="@+id/article_tags_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:drawableStart="@drawable/ic_outline_tag_24"
+            android:layout_marginBottom="20dp"
             android:drawablePadding="10dp"
+            android:fontFamily="@font/raleway"
             android:gravity="center"
-            android:paddingStart="16dp"
+            android:paddingStart="10dp"
             android:paddingEnd="16dp"
             android:textColor="@color/colorLoginButtonBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/article_title_text"
-            app:layout_constraintVertical_bias="1.0"
-            tools:drawableStart="@drawable/ic_outline_tag_24"
+            app:layout_constraintVertical_bias="0.69"
             tools:text="Add tags" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -94,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.75" />
+            app:layout_constraintGuide_end="130dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

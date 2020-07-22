@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
     lateinit var adapter:ArticleAdapter// for notifying app
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         binding.currentSessionRecycler.layoutManager = LinearLayoutManager(context)
@@ -47,8 +46,8 @@ class HomeFragment : Fragment() {
                 else{
                     val intent= Intent()
                     intent.action=Intent.ACTION_SEND
-//                    intent.putExtra(Intent.EXTRA_TEXT,viewModel.currentArticles.value!![viewHolder.adapterPosition].articleURL)
-//                    intent.type="text/plain"
+                    intent.putExtra(Intent.EXTRA_TEXT,viewModel.currentArticles.value!![viewHolder.adapterPosition].articleURL)
+                    intent.type="text/plain"
                     startActivity(Intent.createChooser(intent,"Share To:"))
                     adapter.notifyDataSetChanged()
                 }

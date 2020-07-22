@@ -19,14 +19,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav_main" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/nav_host_fragment"
+            android:background="@drawable/shadow" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="#FFF060"
+            android:background="@color/white"
             app:itemIconSize="30dp"
+            app:labelVisibilityMode="unlabeled"
+            android:elevation="25dp"
             app:itemIconTint="@color/bottom_nav_bar_colors"
-            app:itemTextColor="@color/bottom_nav_bar_colors"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

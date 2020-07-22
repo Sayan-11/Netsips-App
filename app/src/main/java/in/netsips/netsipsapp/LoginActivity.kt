@@ -13,7 +13,10 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class LoginActivity : AppCompatActivity() {
@@ -70,14 +73,31 @@ class LoginActivity : AppCompatActivity() {
 
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
+
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = FirebaseAuth.getInstance().currentUser
+
                     val rtd = FirebaseDatabase.getInstance().reference.child(user!!.uid)
-                    rtd.child(getString(R.string.rtd_field_days))
-                        .setValue("${getString(R.string.rtd_field_days_default_value)} ")
+//                    rtd.child(getString(R.string.rtd_field_days))
+//                        .setValue("${getString(R.string.rtd_field_days_default_value)} ")
                     rtd.child(getString(R.string.rtd_field_email)).setValue(user.email)
+                    Log.e("Days",user.uid)
+                    rtd.addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                if (dataSnapshot.hasChild(getString(R.string.rtd_field_days))) {
+
+                                    //User Exists , No Need To add new data.
+                                    //Get previous data from firebase. It will take previous data as soon as possible..
+                                    return
+                                } else {
+                                    rtd.child(getString(R.string.rtd_field_days)).setValue("${getString(R.string.rtd_field_days_default_value)} ")
+                                }
+                            }
+
+                            override fun onCancelled(databaseError: DatabaseError) {}
+                        })
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
@@ -90,6 +110,6 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-    }
 
+    }
 }

@@ -2,29 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/aboutFragment"
-        android:icon="@drawable/ic_outline_info_24"
-        android:title="" />
-
-    <item
         android:id="@+id/searchFragment"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:icon="@drawable/ic_tags_black"
         android:title="" />
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/outline_home_24"
+        android:icon="@drawable/ic_home_black"
         android:title="" />
 
     <item
         android:id="@+id/settingsFragment"
-        android:icon="@drawable/outline_settings_24"
+        android:icon="@drawable/ic_profile_black"
         android:title="" />
 
-    <item
-        android:id="@+id/deleteFragment"
-        android:icon="@drawable/outline_delete_24"
-        android:title="" />
 
 
 

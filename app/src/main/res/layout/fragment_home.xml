@@ -19,11 +19,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_session_text" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/shadow"
+            app:layout_constraintTop_toTopOf="@+id/current_session_recycler" />
         <TextView
             android:id="@+id/current_session_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#FFF060"
+            android:paddingLeft="15dp"
+            android:drawableStart="@drawable/icon_size"
             android:fontFamily="@font/raleway_light"
             android:gravity="center"
             android:textSize="30sp"

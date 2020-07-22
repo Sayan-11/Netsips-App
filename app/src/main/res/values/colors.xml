@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFF000</color>
+    <color name="colorPrimary">#6633CC</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#000000</color>
     <color name="colorLoginBackground">#FFFFFF</color>
@@ -8,7 +8,7 @@
     <color name="colorLoginButtonText">#FFFFFF</color>
     <color name="colorTextPrimary">#000000</color>
     <color name="colorBottomNavBarNotSelected">#616161</color>
-    <color name="colorBottomNavBarSelected">#000000</color>
+    <color name="colorBottomNavBarSelected">#6633CC</color>
     <color name="colorTopTitle">#FFF060</color>
 
 

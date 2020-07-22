@@ -4,7 +4,6 @@ import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.ui.AddTagBottomSheet
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,25 +43,33 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
 //        }
         fun bindItems(article: FirestoreArticle) {
             val articleDateText = itemView.findViewById<TextView>(R.id.article_date_text)
-            val articleFeatureImage = itemView.findViewById<ImageView>(R.id.article_featured_image)
+            val articleFeatureImage = itemView.findViewById<ImageView>(R.id.roundedImageView)
             val articleTitleText = itemView.findViewById<TextView>(R.id.article_title_text)
             val link = itemView.findViewById<TextView>(R.id.link)
             val articleTagsText = itemView.findViewById<TextView>(R.id.article_tags_text)
             articleDateText.text = formatDate(article.dateAdded.time)
-
             if (article.imageUrl.isNotEmpty()) {
                 if (article.imageUrl.contains(".png"))
-                    Picasso.with(itemView.context).load(article.imageUrl).resize(1000,1000).centerCrop()
+                    Picasso.with(itemView.context).load(article.imageUrl).resize(1000, 1000)
+                        .centerCrop()
                         .placeholder(R.drawable.ic_baseline_image_24).into(articleFeatureImage)
-                else
-                    Glide.with(itemView.context).load(article.imageUrl).apply(RequestOptions().override(1000, 1000).centerCrop())
+                else {
+                    articleFeatureImage.setBackgroundResource(R.color.white)
+                    articleFeatureImage.scaleType = ImageView.ScaleType.FIT_XY
+                    Glide.with(itemView.context).load(article.imageUrl)
+                        .apply(RequestOptions().override(1000, 1000).centerCrop())
                         .placeholder(R.drawable.ic_baseline_image_24).into(articleFeatureImage)
+                }
+                articleFeatureImage.setBackgroundResource(R.color.white)
+                articleFeatureImage.scaleType = ImageView.ScaleType.FIT_XY
             }
-            else
-                articleFeatureImage.setImageResource(R.drawable.ic_baseline_image_24)
+            else{
+                articleFeatureImage.setBackgroundResource(R.color.white)
+                articleFeatureImage.scaleType=ImageView.ScaleType.FIT_XY
+                articleFeatureImage.setImageResource(R.drawable.ic_baseline_image_24)}
 
             articleTitleText.text = article.title
-            Log.e("url",article.articleURL)
+            //Log.e("url",article.articleURL)
             val p = Pattern.compile(
                 "(www\\.)?([a-zA-Z0-9-]+)(\\.[a-zA-Z]+)"
             ).matcher(article.articleURL)
@@ -89,7 +96,7 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
         }
 
         private fun formatDate(dateToFormat: Long): String {
-            return SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault()).format(Date(dateToFormat))
+            return SimpleDateFormat("dd MMMM", Locale.getDefault()).format(Date(dateToFormat))
         }
 
         
