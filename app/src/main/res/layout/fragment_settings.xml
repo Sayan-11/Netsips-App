@@ -15,29 +15,116 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorLoginBackground">
 
+
                 <TextView
                     android:id="@+id/LogOut"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
                     android:clickable="true"
-                    android:fontFamily="@font/raleway_light"
-                    android:paddingLeft="25dp"
+                    android:drawableStart="@drawable/logout_size"
+                    android:drawablePadding="25dp"
+                    android:focusable="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:paddingStart="25dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:text="Log Out"
                     android:textColor="@color/colorLoginButtonBackground"
-                    android:textSize="24sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logOut" />
+
+                <TextView
+                    android:id="@+id/logOut"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:drawableStart="@drawable/about_size"
+                    android:drawablePadding="25dp"
+                    android:focusable="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:paddingStart="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="About"
+                    android:textColor="@color/colorLoginButtonBackground"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                <TextView
+                    android:id="@+id/logOut2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:drawableStart="@drawable/delete_size"
+                    android:drawablePadding="25dp"
+                    android:focusable="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:paddingStart="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="Trash"
+                    android:textColor="@color/colorLoginButtonBackground"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view2" />
 
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#A8808080"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/LogOut"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <View
-                    android:id="@+id/view"
+                    android:id="@+id/view6"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#A8808080"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logOut2" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#A8808080"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/logOut" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="#A8808080"
@@ -45,50 +132,46 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="#A8808080"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switch1" />
-
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="10dp"
-                    android:background="#A8808080"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/LogOut"
-                    android:layout_marginEnd="10dp" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-                    <Button
-                        android:id="@+id/saveButton"
+                    <Switch
+                        android:id="@+id/switch1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:layout_marginTop="10dp"
+                        android:checked="false"
+                        android:fontFamily="@font/raleway_light"
+                        android:paddingBottom="10dp"
+                        android:switchPadding="25dp"
+                        android:text="Dark Mode"
+                        android:textColor="@color/colorLoginButtonBackground"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:thumb="@drawable/switch_thumb"
+                        android:track="@drawable/switch_track"
+                        tools:checked="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/saveButton"
+                        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
+
+                    <Button
+                        android:id="@+id/saveButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
                         android:text="@string/save"
                         android:textAllCaps="false"
-                        android:textSize="16sp"
                         android:textColor="@color/colorLoginBackground"
+                        android:textSize="16sp"
                         app:backgroundTint="@color/colorLoginButtonBackground"
-                        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
                         app:layout_constraintStart_toStartOf="@+id/radioGroup"
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -236,32 +319,14 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="20dp"
-                    android:checked="false"
-                    android:fontFamily="@font/raleway_light"
-                    android:text="Dark Mode"
-                    android:textColor="@color/colorLoginButtonBackground"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/imageView2"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="10dp"
                     android:elevation="10dp"
-                    app:cardCornerRadius="150dp"
+                    app:cardCornerRadius="100dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -279,7 +344,7 @@
                 <View
                     android:id="@+id/view4"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="0.5dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="#A8808080"
@@ -292,42 +357,41 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Name"
                     android:textColor="@color/colorLoginButtonBackground"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/textView8"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                    app:layout_constraintTop_toTopOf="@+id/imageView2"
+                    app:layout_constraintVertical_bias="0.05"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="@string/rtd_field_email"
                     android:textColor="@color/colorBottomNavBarNotSelected"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView9"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                     app:layout_constraintStart_toStartOf="@+id/textView7"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                    app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="30dp"
                     android:fontFamily="@font/poppins_light"
                     android:text="Bookmarks Saved"
                     android:textColor="@color/colorBottomNavBarNotSelected"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                     app:layout_constraintStart_toStartOf="@+id/textView7"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                    app:layout_constraintTop_toTopOf="@+id/imageView2"
+                    app:layout_constraintVertical_bias="0.95" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
