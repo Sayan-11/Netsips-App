@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -38,6 +39,18 @@ class SettingsViewModel(private val application: Application) : ViewModel() {
     fun updateDays(days: String) {
         database.child(application.getString(R.string.rtd_field_days)).setValue(days)
     }
+    var name : String? =
+        if(FirebaseAuth.getInstance().currentUser?.displayName==null||FirebaseAuth.getInstance().currentUser?.displayName=="")
+            GoogleSignIn.getLastSignedInAccount(application)?.displayName
+        else
+            FirebaseAuth.getInstance().currentUser?.displayName
+    var email : String? =
+        if(FirebaseAuth.getInstance().currentUser?.email==null||FirebaseAuth.getInstance().currentUser?.email=="")
+            GoogleSignIn.getLastSignedInAccount(application)?.email
+        else
+            FirebaseAuth.getInstance().currentUser?.email
+
+    var photo= GoogleSignIn.getLastSignedInAccount(application)?.photoUrl?: FirebaseAuth.getInstance().currentUser?.photoUrl
 
 }
 

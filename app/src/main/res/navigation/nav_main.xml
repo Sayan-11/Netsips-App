@@ -10,10 +10,6 @@
         android:name="in.netsips.netsipsapp.ui.HomeFragment"
         android:label="HomeFragment" />
     <fragment
-        android:id="@+id/deleteFragment"
-        android:name="in.netsips.netsipsapp.ui.DeleteFragment"
-        android:label="fragment_delete" />
-    <fragment
         android:id="@+id/settingsFragment"
         android:name="in.netsips.netsipsapp.ui.SettingsFragment"
         android:label="NotificationsFragment" />

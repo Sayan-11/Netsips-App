@@ -57,7 +57,7 @@
                 android:id="@+id/login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:drawableLeft="@drawable/logout_size"
+                android:drawableLeft="@drawable/google_size"
                 android:fontFamily="@font/raleway"
                 android:text="@string/sign_in_with_google"
                 android:textAllCaps="false"

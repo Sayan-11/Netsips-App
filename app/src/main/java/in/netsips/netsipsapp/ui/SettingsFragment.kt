@@ -3,7 +3,10 @@ package `in`.netsips.netsipsapp.ui
 import `in`.netsips.netsipsapp.LoginActivity
 import `in`.netsips.netsipsapp.LoginActivity.Companion.CLIENT_ID
 import `in`.netsips.netsipsapp.R
+import `in`.netsips.netsipsapp.TrashActivity
 import `in`.netsips.netsipsapp.databinding.FragmentSettingsBinding
+import `in`.netsips.netsipsapp.ui.viewmodel.FirestoreViewModel
+import `in`.netsips.netsipsapp.ui.viewmodel.FirestoreViewModelFactory
 import `in`.netsips.netsipsapp.ui.viewmodel.SettingsViewModel
 import `in`.netsips.netsipsapp.ui.viewmodel.SettingsViewModelFactory
 import android.content.Context
@@ -22,15 +25,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
+import java.util.*
 
 
 class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?):View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?):View?{
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
-
         //val sharedPref = activity?.getSharedPreferences("NightMode", Context.MODE_PRIVATE)
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return null
 
@@ -99,11 +103,33 @@ class SettingsFragment : Fragment() {
             binding.daySaturdayCheckbox,
             binding.daySundayCheckbox
         )
+        var viewModel1 =
+            ViewModelProvider(
+                this,
+                FirestoreViewModelFactory(
+                    requireActivity().application
+                )
+            ).get(
+                FirestoreViewModel::class.java
+            )
+        viewModel1.getSavedArticles().observe(viewLifecycleOwner, Observer {
+            binding.tvBookmarks.text="${it.size} Bookmarks Added"
+        })
 
         val viewModel =
             ViewModelProvider(this, SettingsViewModelFactory(requireActivity().application)).get(
                 SettingsViewModel::class.java
             )
+
+        binding.tvName.text=viewModel.name
+        binding.tvEmail.text = viewModel.email?.toLowerCase(Locale.ROOT)
+
+        val imageUrl=viewModel.photo
+        Picasso.with(context).load(imageUrl).resize(1000, 1000)
+                .centerCrop()
+                .placeholder(R.drawable.ic_profile_black).into(binding.roundedImageView)
+
+        //setting radio and checkboxes
         viewModel.daysSelected.observe(viewLifecycleOwner, Observer { days ->
             checkBoxes.forEach { it.isChecked = false }
 
@@ -116,8 +142,6 @@ class SettingsFragment : Fragment() {
                     Log.e("total", total[i].toString())
                     i++
                 }
-
-
             }
             Log.e("total", total.size.toString())
             if (total.size == 7){
@@ -182,7 +206,12 @@ class SettingsFragment : Fragment() {
                 }
                 .show()
         }
+        binding.trash.setOnClickListener{
+            startActivity(Intent(context,TrashActivity::class.java))
+        }
 
         return binding.root
     }
+
+
 }

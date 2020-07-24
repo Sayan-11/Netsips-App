@@ -68,7 +68,6 @@ class HomeFragment : Fragment() {
                 binding.noArticlesEmpty.visibility = View.VISIBLE
             }
         })
-
         return binding.root
     }
 }

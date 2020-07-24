@@ -10,6 +10,7 @@
     <color name="colorBottomNavBarNotSelected">#616161</color>
     <color name="colorBottomNavBarSelected">#6633CC</color>
     <color name="colorTopTitle">#FFF060</color>
+    <color name="colorshadow">#1F000000</color>
 
 
 

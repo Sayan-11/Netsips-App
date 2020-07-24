@@ -17,7 +17,9 @@ class FirestoreViewModel(private val application: Application) : ViewModel() {
     private val articlesRepository = ArticlesRepository(application)
     var allArticles: MutableLiveData<List<FirestoreArticle>> = MutableLiveData()
     var currentArticles: MutableLiveData<List<FirestoreArticle>> = MutableLiveData()
-//trash vale articles
+
+
+    //trash vale articles
     fun getArchivedArticles(): LiveData<List<FirestoreArticle>> {
         articlesRepository.getAllArticles().whereIn(
             application.getString(R.string.firestore_user_collection_field_article_status),
@@ -66,7 +68,6 @@ private lateinit var savedArticlesList: MutableList<FirestoreArticle>
                     currentArticles.value = null
                     return@addSnapshotListener
                 }
-
                 savedArticlesList = mutableListOf()
                 for (doc in value!!) {
                     val article = FirestoreArticle(
@@ -84,6 +85,7 @@ private lateinit var savedArticlesList: MutableList<FirestoreArticle>
                 savedArticlesList.sortByDescending { it.dateAdded }
                 currentArticles.value = savedArticlesList
             }
+
         return currentArticles
     }
     //_allTags was immutable so no chance of data change
