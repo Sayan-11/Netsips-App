@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/searchFragment"
-        android:icon="@drawable/ic_tags_black"
+        android:icon="@drawable/ic_tag"
         android:title="" />
 
     <item

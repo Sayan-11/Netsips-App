@@ -27,8 +27,9 @@
         <TextView
             android:id="@+id/current_session_text"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:paddingLeft="15dp"
+            android:background="@color/colorLoginBackground"
             android:drawableStart="@drawable/icon_size"
             android:fontFamily="@font/raleway_light"
             android:gravity="center"
