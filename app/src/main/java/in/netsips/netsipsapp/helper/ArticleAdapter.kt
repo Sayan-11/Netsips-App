@@ -74,8 +74,7 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
                 "(www\\.)?([a-zA-Z0-9-]+)(\\.[a-zA-Z]+)"
             ).matcher(article.articleURL)
             if(p.find()){
-                link.text = (p.group(2))?.substring(0,1)?.toUpperCase(Locale.ROOT)
-                    .plus(p.group(2)?.substring(1))
+                link.text = (p.group(2))?.capitalize()
             }
 
             if (article.tags.isBlank())

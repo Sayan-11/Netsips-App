@@ -14,11 +14,6 @@
         android:name="in.netsips.netsipsapp.ui.SettingsFragment"
         android:label="NotificationsFragment" />
     <fragment
-        android:id="@+id/aboutFragment"
-        android:name="in.netsips.netsipsapp.ui.AboutFragment"
-        android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
-    <fragment
         android:id="@+id/searchFragment"
         android:name="in.netsips.netsipsapp.ui.SearchFragment"
         android:label="fragment_search"

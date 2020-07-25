@@ -3,6 +3,7 @@ package `in`.netsips.netsipsapp.ui
 import `in`.netsips.netsipsapp.R
 import `in`.netsips.netsipsapp.databinding.FragmentHomeBinding
 import `in`.netsips.netsipsapp.helper.ArticleAdapter
+import `in`.netsips.netsipsapp.helper.FirestoreArticle
 import `in`.netsips.netsipsapp.helper.SwipeToDeleteShareCallback
 import `in`.netsips.netsipsapp.ui.viewmodel.FirestoreViewModel
 import `in`.netsips.netsipsapp.ui.viewmodel.FirestoreViewModelFactory
@@ -10,7 +11,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +21,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -43,69 +42,42 @@ class HomeFragment : Fragment() {
                 FirestoreViewModel::class.java
             )
 
-        //val list = binding.list
-        val l = mutableListOf<String>()
+            binding.currentSessionText.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                viewModel.getSavedArticles().observe(viewLifecycleOwner, Observer {
 
-        viewModel.getSavedArticles()// har fragment ka different viewmodel hota h so home me aane se farak nai padta
-        viewModel.allTags.observe(viewLifecycleOwner, Observer { k ->
-
-            if (k != null && k.size != 0) {
-//                list.adapter = ArrayAdapter<String>(
-//                    requireContext(),
-//                    R.layout.list_search_tags,
-//                    R.id.item_label,
-//                    k
-//                )
-                binding.currentSessionText.addTextChangedListener(object : TextWatcher {
-                    override fun onTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        before: Int,
-                        count: Int
-                    ) {
-                        Log.e("Already in", s.toString().toLowerCase(Locale.ROOT))
-                        l.clear()
-                        k.forEachIndexed { _, k ->
-                            if (k.toLowerCase(Locale.ROOT)
-                                    .contains(s.toString().toLowerCase(Locale.ROOT))
+                    if (!it.isNullOrEmpty()) {
+                        val result = mutableListOf<FirestoreArticle>()
+                        it.forEachIndexed { _, firestoreArticle ->
+                            if (firestoreArticle.title.contains(s,true)
                             ) {
-                                if (l.contains(k))
-                                    Log.e("Already in", s.toString().toLowerCase(Locale.ROOT))
-                                else
-                                    l.add(k)
+                                result.add(firestoreArticle)
                             }
                         }
-//                        list.adapter = ArrayAdapter<String>(
-//                            requireContext(),
-//                            R.layout.list_search_tags,
-//                            R.id.item_label,
-//                            l
-//                        )
-//                    }
-//                })
-//            } else {
-//                list.adapter = ArrayAdapter<String>(
-//                    requireContext(), R.layout.list_search_tags, R.id.item_label,
-//                    mutableListOf("Add tags to Bookmarks")
-//                )
-//
+                        binding.currentSessionRecycler.adapter = ArticleAdapter(result)
                     }
-
-                    override fun afterTextChanged(s: Editable?) {
-                    }
-
-                    override fun beforeTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        count: Int,
-                        after: Int
-                    ) {
-
-                    }
-
                 })
             }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+
+            }
         })
+
+
         val swipeHandler = object : SwipeToDeleteShareCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 if(direction == ItemTouchHelper.LEFT)
@@ -122,8 +94,6 @@ class HomeFragment : Fragment() {
         }
         ItemTouchHelper(swipeHandler).attachToRecyclerView(binding.currentSessionRecycler)
 
-
-
         viewModel.getSavedArticles().observe(viewLifecycleOwner, Observer { articles ->
             if (!articles.isNullOrEmpty()) {
                 adapter = ArticleAdapter(articles)
@@ -135,6 +105,8 @@ class HomeFragment : Fragment() {
                 binding.noArticlesEmpty.visibility = View.VISIBLE
             }
         })
+
+
         return binding.root
     }
 }
