@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.*
 
 class SettingsViewModel(private val application: Application) : ViewModel() {
 
@@ -41,9 +42,11 @@ class SettingsViewModel(private val application: Application) : ViewModel() {
     }
     var name : String? =
         if(FirebaseAuth.getInstance().currentUser?.displayName==null||FirebaseAuth.getInstance().currentUser?.displayName=="")
-            GoogleSignIn.getLastSignedInAccount(application)?.displayName
+            GoogleSignIn.getLastSignedInAccount(application)?.displayName.toString()
+                .toLowerCase(Locale.ROOT).capitalize()
         else
-            FirebaseAuth.getInstance().currentUser?.displayName
+            FirebaseAuth.getInstance().currentUser?.displayName.toString()
+                .toLowerCase(Locale.ROOT).capitalize()
     var email : String? =
         if(FirebaseAuth.getInstance().currentUser?.email==null||FirebaseAuth.getInstance().currentUser?.email=="")
             GoogleSignIn.getLastSignedInAccount(application)?.email

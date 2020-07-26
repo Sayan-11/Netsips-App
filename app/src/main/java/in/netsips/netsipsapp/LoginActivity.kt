@@ -4,6 +4,7 @@ import `in`.netsips.netsipsapp.databinding.ActivityLoginBinding
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -43,7 +44,39 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        binding.loginButton.setOnClickListener {
+        binding.button.setOnClickListener {
+            val mail = binding.editTextTextEmailAddress.text.toString()
+            val pass = binding.editTextTextPassword.text.toString()
+            if (mail.isNotEmpty() && pass.isNotEmpty()) {
+                auth.signInWithEmailAndPassword(mail.trim(), pass.trim())
+                    .addOnSuccessListener { startActivity(Intent(this, MainActivity::class.java)) }
+                    .addOnFailureListener {
+                        Toast.makeText(
+                            this,
+                            "Authentication Failed",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+            } else
+                Toast.makeText(this, "Enter all fields", Toast.LENGTH_SHORT).show()
+        }
+        binding.textView.setOnClickListener {
+            val mail = binding.editTextTextEmailAddress.text.toString()
+            val pass = binding.editTextTextPassword.text.toString()
+            if (mail.isNotEmpty() && pass.isNotEmpty()) {
+                auth.sendPasswordResetEmail(mail.trim())
+                    .addOnSuccessListener { Toast.makeText(this, "Reset Email Sent", Toast.LENGTH_SHORT).show() }
+                    .addOnFailureListener { Toast.makeText(this, "Not a Registered Email", Toast.LENGTH_SHORT).show()  }
+            }
+            else{
+                Toast.makeText(this, "Please enter an Email Address first", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        binding.textView2.setOnClickListener {
+            startActivity(Intent(this,SignupActivity::class.java))
+        }
+        binding.googleSignin.setOnClickListener {
             loginWithGoogle()
         }
     }

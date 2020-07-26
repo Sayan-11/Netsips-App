@@ -77,4 +77,13 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="about_text">Netsips is a tool to manage your web bookmarks and make them accessible more easily than ever before. Just drop the link of the content you wish to read or view later on the app, and it will be there waiting for you.
+           </string>
+    <string name="Manage">MANAGE YOUR BOOKMARKS </string>
+    <string name="ManageText">Your bookmarks are compiled according to the date, swipe to delete and add tags for swift access.</string>
+    <string name="Newsletter">NEWSLETTER</string>
+    <string name="NewsLetterText">Receive a compilation of all the articles you save on Netsips, along with their crisp summaries in both email and PDF format. Read your favorite content later on the move, during a break, before bedtime, or any other time which suits you without any ads! After all, you\'re the one who curated it! Choose your day of the week to receive the newsletter. </string>
+    <string name="NewsLetterText2">The newsletter will never let you forget your bookmarks ever again. Promise 🙂</string>
+    <string name="Sync">SYNC</string>
+    <string name="SyncText">Netsips is also available on Chrome Web Store. Install Netsips for Chrome and sync your PC and mobile bookmarks in real-time.</string>
 </resources>

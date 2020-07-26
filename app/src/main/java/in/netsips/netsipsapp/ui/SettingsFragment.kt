@@ -1,5 +1,6 @@
 package `in`.netsips.netsipsapp.ui
 
+import `in`.netsips.netsipsapp.AboutActivity
 import `in`.netsips.netsipsapp.LoginActivity
 import `in`.netsips.netsipsapp.LoginActivity.Companion.CLIENT_ID
 import `in`.netsips.netsipsapp.R
@@ -15,6 +16,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
@@ -112,17 +114,25 @@ class SettingsFragment : Fragment() {
             ).get(
                 FirestoreViewModel::class.java
             )
-        viewModel1.getSavedArticles().observe(viewLifecycleOwner, Observer {
-            binding.tvBookmarks.text="${it.size} Bookmarks Added"
-        })
+
+        var name:String
+        var mail: String
 
         val viewModel =
             ViewModelProvider(this, SettingsViewModelFactory(requireActivity().application)).get(
                 SettingsViewModel::class.java
             )
+        if(viewModel.name.isNullOrEmpty()||viewModel.name.toString().toLowerCase(Locale.ROOT) == "null")
+            binding.tvName.visibility= GONE
+        else
+            binding.tvName.text=viewModel.name
+        viewModel1.getSavedArticles().observe(viewLifecycleOwner, Observer {
+            val bookmarks="${it.size} Bookmarks Added"
 
-        binding.tvName.text=viewModel.name
-        binding.tvEmail.text = viewModel.email?.toLowerCase(Locale.ROOT)
+            mail = viewModel.email?.toLowerCase(Locale.ROOT).toString()+ "\n"+bookmarks
+            binding.tvEmail.text=mail
+
+        })
 
         val imageUrl=viewModel.photo
         Picasso.with(context).load(imageUrl).resize(1000, 1000)
@@ -210,6 +220,8 @@ class SettingsFragment : Fragment() {
             startActivity(Intent(context,TrashActivity::class.java))
         }
 
+        binding.about.setOnClickListener { startActivity(Intent(context,AboutActivity::class.java)) }
+        
         return binding.root
     }
 
