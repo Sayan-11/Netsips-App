@@ -23,7 +23,7 @@
     <string name="pref_dialog_title_days">Select days</string>
     <string name="archive">Archive</string>
     <string name="no_articles_prompt">Looks like you haven\'t saved any articles\nShare any article with netsips and they\'ll be waiting for you over here :)</string>
-    <string name="archive_no_articles_prompt">Looks like there aren\'t any articles in your archive right now\nOnce you\'ve been reminded to read the articles in your current session, they\'ll appear here</string>
+    <string name="archive_no_articles_prompt">Looks like there aren\'t any articles in your archive right now</string>
     <string name="sunday">Sunday</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
@@ -35,7 +35,7 @@
     <string name="sign_out_title">Sign out</string>
     <string name="sign_out_message">Are you sure you want to sign out?</string>
     <string name="sign_out_positive">Yes</string>
-    <string name="sign_out_neutral">Cancel</string>
+    <string name="sign_out_neutral">No</string>
 
     <string name="tags">Tags</string>
     <string name="add_tag">Add tags</string>

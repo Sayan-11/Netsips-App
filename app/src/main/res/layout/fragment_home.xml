@@ -96,6 +96,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 app:srcCompat="@drawable/outline_bookmarks_24"
+                android:tint="@color/colorLoginButtonBackground"
                 tools:layout_editor_absoluteX="181dp"
                 tools:layout_editor_absoluteY="289dp" />
 

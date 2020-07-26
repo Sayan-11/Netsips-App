@@ -16,8 +16,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
+import android.view.View.*
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -197,9 +199,8 @@ class SettingsFragment : Fragment() {
         }
 
         binding.LogOut.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.sign_out_title)
-                .setMessage(R.string.sign_out_message)
+            val builder=MaterialAlertDialogBuilder(requireContext())
+                    .setMessage(R.string.sign_out_message)
                 .setPositiveButton(R.string.sign_out_positive) { dialog, which ->
                     FirebaseAuth.getInstance().signOut()
 
@@ -214,7 +215,15 @@ class SettingsFragment : Fragment() {
                 }
                 .setNeutralButton(R.string.sign_out_neutral) { dialog, which -> //Do nothing
                 }
-                .show()
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+
+            val positiveButton: Button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            val neutralButton: Button = dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
+
+            positiveButton.textSize=15F
+            positiveButton.textAlignment= TEXT_ALIGNMENT_TEXT_START
+            neutralButton.textAlignment= TEXT_ALIGNMENT_TEXT_END
         }
         binding.trash.setOnClickListener{
             startActivity(Intent(context,TrashActivity::class.java))

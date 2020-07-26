@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SignupActivity"/>
-        <activity android:name=".AboutActivity"/>
+        <activity android:name=".AboutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".TagResultActivity" />
         <activity
             android:name=".TrashActivity"
