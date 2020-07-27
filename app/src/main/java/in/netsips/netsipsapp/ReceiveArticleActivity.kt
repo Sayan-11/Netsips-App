@@ -6,11 +6,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -88,7 +91,20 @@ class ReceiveArticleActivity : AppCompatActivity() {
                     Glide.with(applicationContext).load(response.body()?.meta?.image)
                         .into(binding.articleFeaturedImage)
                     binding.articleTitleText.text = response.body()?.meta?.title
-
+                    val image=response.body()?.meta?.image.toString()
+                    Log.e("ka",image)
+                    if (image.isNotEmpty()) {
+                        if (image.contains(".png"))
+                            Picasso.with(applicationContext).load(image).resize(1000, 1000)
+                                .centerCrop()
+                                .into(binding.articleFeaturedImage)
+                        else {
+                            Glide.with(applicationContext).load(image)
+                                .apply(RequestOptions().override(1000, 1000).centerCrop())
+                                .into(binding.articleFeaturedImage)
+                        }
+                    }
+                    else{binding.articleFeaturedImage.visibility=GONE}
                     binding.saveArticleFab.setOnClickListener {
                         articlesRepository.insertArticle(
                             Article(

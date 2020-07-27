@@ -35,6 +35,7 @@
                 android:layout_marginEnd="40dp"
                 android:drawablePadding="10dp"
                 android:ems="10"
+                android:backgroundTint="@color/black"
                 android:textColor="@color/black"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
@@ -50,6 +51,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="40dp"
                 android:ems="10"
+                android:backgroundTint="@color/black"
                 android:textColor="@color/black"
                 android:hint="Password"
                 android:inputType="textPassword"
@@ -76,8 +78,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_height="120dp"
                 android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
