@@ -52,21 +52,23 @@ class ArticleAdapter(private val articlesList: List<FirestoreArticle>) :
                 if (article.imageUrl.contains(".png"))
                     Picasso.with(itemView.context).load(article.imageUrl).resize(1000, 1000)
                         .centerCrop()
-                        .placeholder(R.drawable.ic_baseline_image_24).into(articleFeatureImage)
+                        .placeholder(R.drawable.placeholder_size)
+                        .into(articleFeatureImage)
                 else {
                     articleFeatureImage.setBackgroundResource(R.color.white)
                     articleFeatureImage.scaleType = ImageView.ScaleType.FIT_XY
                     Glide.with(itemView.context).load(article.imageUrl)
                         .apply(RequestOptions().override(1000, 1000).centerCrop())
-                        .placeholder(R.drawable.ic_baseline_image_24).into(articleFeatureImage)
+                        .placeholder(R.drawable.placeholder_size)
+                        .into(articleFeatureImage)
                 }
                 articleFeatureImage.setBackgroundResource(R.color.white)
-                articleFeatureImage.scaleType = ImageView.ScaleType.FIT_XY
+                articleFeatureImage.scaleType = ImageView.ScaleType.CENTER_CROP
             }
             else{
                 articleFeatureImage.setBackgroundResource(R.color.white)
-                articleFeatureImage.scaleType=ImageView.ScaleType.FIT_XY
-                articleFeatureImage.setImageResource(R.drawable.ic_baseline_image_24)}
+                articleFeatureImage.scaleType=ImageView.ScaleType.CENTER_CROP
+                articleFeatureImage.setImageResource(R.drawable.placeholder_size)}
 
             articleTitleText.text = article.title
             //Log.e("url",article.articleURL)

@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -97,14 +97,16 @@ class ReceiveArticleActivity : AppCompatActivity() {
                         if (image.contains(".png"))
                             Picasso.with(applicationContext).load(image).resize(1000, 1000)
                                 .centerCrop()
+                                .placeholder(R.drawable.placeholder_size)
                                 .into(binding.articleFeaturedImage)
                         else {
                             Glide.with(applicationContext).load(image)
                                 .apply(RequestOptions().override(1000, 1000).centerCrop())
+                                .placeholder(R.drawable.placeholder_size)
                                 .into(binding.articleFeaturedImage)
                         }
+                        binding.articleFeaturedImage.visibility= VISIBLE
                     }
-                    else{binding.articleFeaturedImage.visibility=GONE}
                     binding.saveArticleFab.setOnClickListener {
                         articlesRepository.insertArticle(
                             Article(

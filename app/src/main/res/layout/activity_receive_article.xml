@@ -45,7 +45,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:src="@drawable/outline_done_24"
-                app:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -69,9 +69,10 @@
                     <ImageView
                         android:id="@+id/article_featured_image"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="300dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
+                        android:visibility="gone"
                         android:layout_marginEnd="16dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"

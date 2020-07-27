@@ -82,7 +82,7 @@
     <string name="Manage">MANAGE YOUR BOOKMARKS </string>
     <string name="ManageText">Your bookmarks are compiled according to the date, swipe to delete and add tags for swift access.</string>
     <string name="Newsletter">NEWSLETTER</string>
-    <string name="NewsLetterText">Receive a compilation of all the articles you save on Netsips, along with their crisp summaries in both email and PDF format. Read your favorite content later on the move, during a break, before bedtime, or any other time which suits you without any ads! After all, you\'re the one who curated it! Choose your day of the week to receive the newsletter. </string>
+    <string name="NewsLetterText">Receive a compilation of all the articles you save on Netsips, along with their crisp summaries in both email and PDF format. </string>
     <string name="NewsLetterText2">The newsletter will never let you forget your bookmarks ever again. Promise 🙂</string>
     <string name="Sync">SYNC</string>
     <string name="SyncText">Netsips is also available on Chrome Web Store. Install Netsips for Chrome and sync your PC and mobile bookmarks in real-time.</string>
